@@ -9,7 +9,8 @@ app.use(express.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
 
 //rutas
-app.use('/api/pagos', require('./routes/pago.routes.js'))
+app.use('/api/pagos', require('./routes/pago.routes.js'));
+app.use('/api/propietario', require('./routes/propietario.route.js'))
 
 //setting
 app.set('port', process.env.PORT || 3000);
