@@ -25,14 +25,14 @@ pagoCtrl.crearPago = async (req, res) => {
 }
 
 //Obtengo información de un pago
-pagoCtrl.getPago = async (res, req) => {
+pagoCtrl.getPago = async (req, res) => {
     const pago = await Pago.findById(req.params.id);
     if (!pago) return res.status(404).json({ msg: 'Pago no encontrado' });
     res.json(pago);
 }
 
 //Actualizo un pago
-pagoCtrl.updatePago = async (res, req) => {
+pagoCtrl.updatePago = async (req, res) => {
     const vpago = new Pago(req.body);
     try {
         await Pago.updateOne({_id: req.body.id}, vpago);
