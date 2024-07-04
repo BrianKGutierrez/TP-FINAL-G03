@@ -6,7 +6,7 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
-app.use({origin: 'http://localhost:4200'});
+app.use(cors({ origin: 'http://localhost:4200' }));
 
 //rutas
 app.use('/api/pagos', require('./routes/pago.routes.js'))
