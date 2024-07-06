@@ -1,0 +1,20 @@
+<h2>Editar Alquiler</h2>
+
+<form (submit)="guardarCambios()">
+  <label for="plazoMeses">Plazo (Meses):</label>
+  <input type="number" id="plazoMeses" name="plazoMeses" [(ngModel)]="alquiler.plazoMeses" required>
+
+  <label for="costoalquiler">Costo de Alquiler:</label>
+  <input type="number" id="costoalquiler" name="costoalquiler" [(ngModel)]="alquiler.costoalquiler" required>
+
+  <label for="fecha">Fecha:</label>
+  <input type="date" id="fecha" name="fecha" [(ngModel)]="alquiler.fecha" required>
+
+  <label for="local">Local:</label>
+  <input type="text" id="local" name="local" [(ngModel)]="alquiler.local.titulo" required>
+
+  <label for="propietario">Propietario:</label>
+  <input type="text" id="propietario" name="propietario" [(ngModel)]="alquiler.propietario.nombre" required>
+
+  <button type="submit">Guardar Cambios</button>
+</form>

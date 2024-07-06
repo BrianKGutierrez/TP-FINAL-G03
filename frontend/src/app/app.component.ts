@@ -6,11 +6,13 @@ import { LocalesComponent } from './components/locales/locales.component';
 import { PropietarioComponent } from './components/propietario/propietario.component';
 import { FormPropietarioComponent } from './components/form-propietario/form-propietario.component';
 import { FormLocalComponent } from './components/form-local/form-local.component';
+import { AlquilerCreateComponent } from './components/alquiler-create/alquiler-create.component';
+import { AlquilerListComponent } from './components/alquiler-list/alquiler-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent,LoginComponent,LocalesComponent,PropietarioComponent,FormPropietarioComponent,FormLocalComponent],
+  imports: [RouterOutlet,HeaderComponent,LoginComponent,LocalesComponent,PropietarioComponent,FormPropietarioComponent,FormLocalComponent,AlquilerCreateComponent,AlquilerListComponent,AlquilerListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
