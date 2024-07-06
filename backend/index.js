@@ -12,6 +12,9 @@ app.use(cors({ origin: 'http://localhost:4200' }));
 app.use('/api/pagos', require('./routes/pago.route.js'));
 app.use('/api/propietario', require('./routes/propietario.route.js'))
 app.use('/api/local', require('./routes/local.route.js'));
+app.use('/api/usuario', require('./routes/usuario.route'))
+app.use('/api/alquiler', require('./routes/alquiler.route'));
+
 //setting
 app.set('port', process.env.PORT || 3000);
 

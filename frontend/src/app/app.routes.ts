@@ -3,6 +3,7 @@ import { PropietarioComponent } from './components/propietario/propietario.compo
 import { FormPropietarioComponent } from './components/form-propietario/form-propietario.component';
 import { LocalesComponent } from './components/locales/locales.component';
 import { FormLocalComponent } from './components/form-local/form-local.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
 
@@ -22,6 +23,7 @@ export const routes: Routes = [
     {
         path: 'formLocal/:id',
         component: FormLocalComponent,
-    }
+    },
+    {path: 'login', component: LoginComponent},
 
 ];
