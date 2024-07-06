@@ -4,6 +4,10 @@ import { AlquilerService } from '../../services/alquiler.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Propietario } from '../../models/propietario';
+import { Local } from '../../models/local';
+import { LocalService } from '../../services/local.service';
+import { PropietarioService } from '../../services/propietario.service';
 
 @Component({
   selector: 'app-alquiler-edit',
@@ -14,8 +18,16 @@ import { CommonModule } from '@angular/common';
 })
 export class AlquilerEditComponent implements OnInit{
   alquiler: Alquiler;
+  locales: Local[] = []; // Inicializamos como arreglo vacío
+  propietarios: Propietario[] = []; // Inicializamos como arreglo vacío
 
-  constructor(private route: ActivatedRoute, private alquilerService: AlquilerService, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private alquilerService: AlquilerService,
+    private router: Router,
+    private localService: LocalService,
+    private propietarioService: PropietarioService
+  ) {
     this.alquiler = new Alquiler();
   }
 
@@ -31,8 +43,32 @@ export class AlquilerEditComponent implements OnInit{
         }
       );
     }
+
+    this.getLocales(); // Llamamos a la función para obtener locales
+    this.getPropietarios(); // Llamamos a la función para obtener propietarios
   }
 
+  getLocales() {
+    this.localService.getLocales().subscribe(
+      (result) => {
+        this.locales = result;
+      },
+      (error) => {
+        console.error('Error obteniendo locales:', error);
+      }
+    );
+  }
+
+  getPropietarios() {
+    this.propietarioService.getPropietarios().subscribe(
+      (result) => {
+        this.propietarios = result;
+      },
+      (error) => {
+        console.error('Error obteniendo propietarios:', error);
+      }
+    );
+  }
   guardarCambios(): void {
     this.alquilerService.updateAlquiler(this.alquiler).subscribe(
       (data) => {
