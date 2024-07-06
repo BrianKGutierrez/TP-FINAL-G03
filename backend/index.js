@@ -1,27 +1,21 @@
 const express = require('express');
 const cors = require('cors');
-const { mongoose } = require('./database');
-const path = require('path');
-var app = express();
+const {mongoose} = require('./database');
+
+const app = express();
 
 // Middlewares
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
 
-// Cargamos el modulo de direccionamiento de rutas
-
-// app.use('/api/productos', require('./routes/producto.route.js'));
-app.use('/api/usuario', require('./routes/usuario.route'));
-
-
-
-// Sirve archivos estáticos desde el directorio uploads
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// Setting
+//rutas
+app.use('/api/pagos', require('./routes/pago.route.js'));
+app.use('/api/propietario', require('./routes/propietario.route.js'))
+app.use('/api/local', require('./routes/local.route.js'));
+//setting
 app.set('port', process.env.PORT || 3000);
 
-// Starting the server
-app.listen(app.get('port'), () => {
-  console.log(`Servidor iniciado en el puerto`, app.get('port'));
+//starting server
+app.listen(app.get('port'), () =>{
+    console.log('Server started on port', app.get('port'));
 });

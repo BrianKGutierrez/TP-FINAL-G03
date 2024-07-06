@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
-const URI = 'mongodb://localhost/proyectodb';
-mongoose.connect(URI)// aqui se conectada a la base de atos y bueno manda mensaje dependiendo el resultado
-.then(db=>console.log('Base de datos conectada'))
+const URI = 'mongodb://127.0.0.1/proyectodb';
+mongoose.connect(URI)
+.then(db=>console.log('DB is connected')) 
 .catch(err=>console.error(err))
+
 module.exports = mongoose;
+
