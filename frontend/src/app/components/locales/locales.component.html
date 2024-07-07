@@ -21,8 +21,6 @@
     <p class="card-text">Superficie: {{local.superficie}}m²</p>
     <p class="card-text">Nro Local:{{local.nroLocal}}</p>
     <p class="card-text">Precio:{{local.precio}}</p><!--si esta alquilado y es cliente no se muestra-->
-    <p class="card-text">Habilitado:{{local.habilitado}}</p>
-    <p  class="card-text">Alquilado:{{local.alquilado}}</p>
  </div>
  <button *ngIf="local.alquilado===false && local.habilitado===true" type="button" class="btn btn-danger d-flex justify-content-center text-center" style="margin-top: 10px;">Alquilar</button>
  <button type="button" class="btn btn-warning d-flex justify-content-center text-center" (click)="EliminarLocal(local._id)" style="margin-top: 10px;">Eliminar</button>
