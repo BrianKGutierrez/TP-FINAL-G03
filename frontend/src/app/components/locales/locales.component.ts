@@ -21,6 +21,7 @@ export class LocalesComponent {
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params=>{
       this.filtro=params['filtro'];
+      this.ObtenerLocales();
   });
     this.ObtenerLocales();
   }
@@ -81,7 +82,7 @@ export class LocalesComponent {
   EliminarLocal(id: string) {
     this.localService.deleteLocal(id).subscribe(
       (data: any) => {
-        alert("Ticket eliminado correctamente")
+        alert("Local eliminado correctamente")
       },
       error => {
         console.log(error);
@@ -90,5 +91,16 @@ export class LocalesComponent {
     );
     this.ObtenerLocales();
   }
+  AlquilarLocal(id:string,estado:boolean){
+    this.localService.cambiarEstado(id,estado).subscribe(
+      (data: any) => {
+        this.ObtenerLocales()
+        alert("Alquilado")
+      },
+      error => {
+        console.log(error);
+      }
 
+    );
+  }
 }

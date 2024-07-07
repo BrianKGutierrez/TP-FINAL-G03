@@ -5,7 +5,7 @@ export class Local {
     imagen!: string;
     superficie!: number;
     direccion!: string;
-    habilitado!: boolean;
-    alquilado!: boolean;
+    habilitado: boolean=false;
     nroLocal!: number;
+    alquilado: boolean=false;
 }

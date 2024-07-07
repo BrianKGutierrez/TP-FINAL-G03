@@ -23,11 +23,8 @@ export class FormLocalComponent {
     private activateRoute: ActivatedRoute,private domSanitizer: DomSanitizer){
   this.file={base64: '', safeurl: null};
   this.local=new Local;
-  this.local.habilitado=false;
   } 
-
   Registrar(): void {
-    this.local.alquilado=false;
     if (this.accion === 'new') {
     this.localService.createLocal(this.local).subscribe(
       (result:any) =>{
@@ -75,11 +72,10 @@ export class FormLocalComponent {
   }
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    //console.log(event.target);
+
     if(file)
       {
         const reader = new FileReader();
-        //declaro el comportamiento del onload cuando el reader carga o lee algo
         reader.onload = () => {
           let base64 = reader.result as string;
           this.local.imagen=base64;
@@ -87,7 +83,6 @@ export class FormLocalComponent {
           this.file.base64 = base64;
           this.file.safeurl = safeurl;
           };
-          //hago que el reader lea un archivo
           reader.readAsDataURL(file);
           console.log(file);
       }   

@@ -16,7 +16,23 @@ localCtrl.createLocal = async (req, res) => {
         })
     }
 }
-
+localCtrl.cambiarEstadoAlquilado = async (req, res) => {
+    try {
+        const id = req.body.id;
+        var estado =req.params.estado;
+        const local = await Local.findByIdAndUpdate(id, { alquilado: estado }, { new: true }); 
+        res.json({
+            'status': '1',
+            'msg': 'Alquilado',
+            local
+        })
+    } catch (error) {
+        res.status(400).json({
+            'status': '0',
+            'msg': 'Error procesando la operacion'
+        })
+    }
+}
 //Obtener todos los locales
 localCtrl.getLocales = async (req, res) => {
     var locales = await Local.find();

@@ -11,4 +11,5 @@ router.get('/noHabilitados', localCtrl.getLocalesNoHabilitados);
 router.get('/:id', localCtrl.getLocal );
 router.delete('/:id',localCtrl.deleteLocal);
 router.put('/', localCtrl.editLocal);
+router.put('/cambiarestado/:estado', localCtrl.cambiarEstadoAlquilado);
 module.exports = router;

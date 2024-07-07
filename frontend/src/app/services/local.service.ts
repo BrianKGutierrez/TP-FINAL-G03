@@ -76,5 +76,16 @@ export class LocalService {
     }
     return this._http.delete(this.hostBase + '/' + id, httpOptions);
   }
+  cambiarEstado(id:string,estado:boolean): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    let body = {
+      id: id
+    };
+    return this._http.put(this.hostBase +'/cambiarestado/'+estado,body, httpOptions);
+  }
 
 }
