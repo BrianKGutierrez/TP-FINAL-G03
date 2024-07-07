@@ -1,4 +1,7 @@
 const Usuario = require ('./../models/usuario')
+//importamos el manejador de token
+const jwt = require('jsonwebtoken');
+
 const usuarioCtrl = {}
 usuarioCtrl.createUsuario = async (req, res)=>{
     //en req.body se espera que vengan los datos de usuario a crear
@@ -12,7 +15,7 @@ usuarioCtrl.createUsuario = async (req, res)=>{
     } catch (error) {
     res. status(400).json({
     'status': '0',
-    'msg': 'Error procesando operacion.'
+    'msg': 'Error procesando al crear usuario'
     })
     }
    }
@@ -25,6 +28,7 @@ usuarioCtrl.createUsuario = async (req, res)=>{
    }
    try {
    //el método findOne retorna un objeto que cumpla con los criterios de busqueda
+   
    const user = await Usuario.findOne(criteria);
    if (!user) {
    res.json({
@@ -32,12 +36,14 @@ usuarioCtrl.createUsuario = async (req, res)=>{
    msg: "not found"
    })
    } else {
-   res.json({
-   status: 1,
-   msg: "success",
-   username: user.username, //retorno información útil para el frontend
-   perfil: user.perfil, //retorno información útil para el frontend
-   userid: user._id //retorno información útil para el frontend
+    const unToken = jwt.sign({id: user._id}, "secretkey");
+    res.json({
+    status: 1,
+    msg: "success",
+    username: user.username, //retorno información útil para el frontend
+    perfil: user.perfil, //retorno información útil para el frontend
+    userid: user._id, //retorno información útil para el frontend
+    token: unToken
 })
 }
 } catch (error) {

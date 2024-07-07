@@ -31,12 +31,15 @@ export class LoginComponent {
   (result) => {
   var user = result;
   if (user.status == 1){
-  //guardamos el user en cookies en el cliente
-  sessionStorage.setItem("user", user.username);
-  sessionStorage.setItem("userid", user.userid);
-  sessionStorage.setItem("perfil", user.perfil);
-  //redirigimos a home o a pagina que llamo
-  this.router.navigateByUrl(this.returnUrl);
+    //guardamos el tokek localmente
+    sessionStorage.setItem("token", user.token);
+
+    //guardamos el user en cookies en el cliente
+    sessionStorage.setItem("user", user.username);
+    sessionStorage.setItem("userid", user.userid);
+    sessionStorage.setItem("perfil", user.perfil);
+    //redirigimos a home o a pagina que llamo
+    this.router.navigateByUrl(this.returnUrl);
   } else {
   //usuario no encontrado muestro mensaje en la vista
   this.msglogin="Credenciales incorrectas..";
