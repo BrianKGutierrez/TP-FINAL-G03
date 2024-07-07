@@ -9,7 +9,7 @@ import { AlquilerCreateComponent } from './components/alquiler-create/alquiler-c
 import { AlquilerEditComponent } from './components/alquiler-edit/alquiler-edit.component';
 
 export const routes: Routes = [
-
+    
     {
         path: 'propietario', component : PropietarioComponent
         
@@ -19,13 +19,13 @@ export const routes: Routes = [
         
     },
     {
-        path: 'locales',
-        component: LocalesComponent,
-    },
+        path: 'formLocal/:id/:filtro',
+        component: FormLocalComponent,
+    }, 
     
     {
-        path: 'formLocal/:id',
-        component: FormLocalComponent,
+        path: 'locales/:filtro',
+        component: LocalesComponent,
     },
     {path: 'login', component: LoginComponent},
     { path: 'alquileres', component: AlquilerListComponent },

@@ -6,6 +6,8 @@ const router = express.Router();
 //rutas para gestion de Local
 router.post('/',localCtrl.createLocal);
 router.get('/', localCtrl.getLocales );
+router.get('/alquilado/:alquilado', localCtrl.getLocalesByAlquilado);
+router.get('/noHabilitados', localCtrl.getLocalesNoHabilitados);
 router.get('/:id', localCtrl.getLocal );
 router.delete('/:id',localCtrl.deleteLocal);
 router.put('/', localCtrl.editLocal);

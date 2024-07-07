@@ -8,57 +8,73 @@ import { Local } from '../models/local';
 })
 export class LocalService {
 
-  hostBase:string;
-  constructor(private _http: HttpClient) { 
-    this.hostBase ="http://localhost:3000/api/local";
+  hostBase: string;
+  constructor(private _http: HttpClient) {
+    this.hostBase = "http://localhost:3000/api/local";
   }
 
-  getLocales():Observable<any>{
+  getLocales(): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this._http.get(this.hostBase + '/', httpOptions);
+  }
+  getLocalesbyAlquilado(alquilado:boolean):Observable<any>{
     let httpOptions={
       headers: new HttpHeaders({
         'Content-Type':'application/json'
       })
     }
-      return this._http.get(this.hostBase+'/',httpOptions);
+      return this._http.get(this.hostBase+'/alquilado/'+alquilado,httpOptions);
     }
 
-    createLocal(local:Local):Observable<any>{
+    getLocalesNoHabilitados():Observable<any>{
       let httpOptions={
         headers: new HttpHeaders({
           'Content-Type':'application/json'
         })
       }
-      let body:any =JSON.stringify(local);
-        return this._http.post(this.hostBase+'/',body,httpOptions);
+        return this._http.get(this.hostBase+'/noHabilitados',httpOptions);
       }
-      
- getLocal(id:string):Observable<any>{
-    let httpOptions={
+  createLocal(local: Local): Observable<any> {
+    let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':'application/json'
+        'Content-Type': 'application/json'
       })
     }
-      return this._http.get(this.hostBase+'/'+id,httpOptions);
+    let body: any = JSON.stringify(local);
+    return this._http.post(this.hostBase + '/', body, httpOptions);
+  }
+
+  getLocal(id: string): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
     }
+    return this._http.get(this.hostBase + '/' + id, httpOptions);
+  }
 
-    updateLocal(local:Local):Observable<any>{
-      let httpOptions={
-        headers: new HttpHeaders({
-          'Content-Type':'application/json'
-        })
-      }
-      let body:any =JSON.stringify(local);
-        return this._http.put(this.hostBase+'/',body,httpOptions);
-    } 
+  updateLocal(local: Local): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    let body: any = JSON.stringify(local);
+    return this._http.put(this.hostBase + '/', body, httpOptions);
+  }
 
 
-    deleteLocal(id:string):Observable<any>{
-      let httpOptions={
-        headers: new HttpHeaders({
-          'Content-Type':'application/json'
-        })
-      }
-        return this._http.delete(this.hostBase+'/'+id,httpOptions);
-      }
+  deleteLocal(id: string): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this._http.delete(this.hostBase + '/' + id, httpOptions);
+  }
 
 }

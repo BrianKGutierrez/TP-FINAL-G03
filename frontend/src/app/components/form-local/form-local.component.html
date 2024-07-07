@@ -18,15 +18,20 @@
               </div>
             </div>
             <div class="mb-3">
-                <label for="precio" class="form-label">Superficie</label>
+                <label for="superficie" class="form-label">Superficie</label>
                 <input required  [(ngModel)]="local.superficie"  type="number" class="form-control" id="superficie" name="superficie">
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label">Numero de Local</label>
+              <input required  [(ngModel)]="local.nroLocal"  type="number" class="form-control" id="nroLocal" name="nroLocal">
             </div>
             <div class="mb-3">
                 <label for="fileInput" class="form-label">Imagen de Local</label>
                 <div class="input-group">
                   <input required type="file" class="form-control rounded-pill form-control-sm" id="fileInput" accept="image/*"
-                    name="imagen" (change)="onFileSelected($event)">
-                </div>
+                    name="imagen" (change)="onFileSelected($event)"> 
+                </div> 
+                <img *ngIf="accion=='update'" src={{local.imagen}}>
               </div>
               <div class="mb-3 form-check">
                 <label class="form-check-label" for="exampleCheck1">Habilitado</label>

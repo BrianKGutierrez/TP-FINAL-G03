@@ -14,19 +14,20 @@ import { Router } from '@angular/router';
   styleUrl: './form-local.component.css'
 })
 export class FormLocalComponent {
-
+  filtro:string="";
   local:Local;
+ 
   file: { base64: string, safeurl: SafeUrl | null };
   accion:string="new";
   constructor(private localService: LocalService,private router:Router,
     private activateRoute: ActivatedRoute,private domSanitizer: DomSanitizer){
   this.file={base64: '', safeurl: null};
   this.local=new Local;
- 
+  this.local.habilitado=false;
   } 
 
   Registrar(): void {
-    this.local.alquilado=true;
+    this.local.alquilado=false;
     if (this.accion === 'new') {
     this.localService.createLocal(this.local).subscribe(
       (result:any) =>{
@@ -46,8 +47,7 @@ export class FormLocalComponent {
       (result)=>{
         if(result.status==1)
           {
-            alert("Local actualizado correctamente")
-           
+            alert("Local actualizado correctamente") 
           }
       },
       (error)=>{
@@ -56,13 +56,13 @@ export class FormLocalComponent {
     );
 
   }
-  this.router.navigate(['locales']);
+  console.log(this.filtro);
+  this.router.navigate(['locales',this.filtro ]);
   }
-
-
-
   ngOnInit():void{
   this.activateRoute.params.subscribe(params=>{
+    this.filtro=params['filtro'];
+    console.log(this.filtro);
     if (params['id'] == "0"){
       this.accion = "new";
       }else{
@@ -90,14 +90,13 @@ export class FormLocalComponent {
           //hago que el reader lea un archivo
           reader.readAsDataURL(file);
           console.log(file);
-      }
-      console.log(this.local);
+      }   
       }
       cargarLocal(id:string) {
         this.localService.getLocal(id).subscribe
         (
           (data) =>{
-            this.local=data;
+            this.local=data[0];
             console.log(this.local);
            },
           error=>{

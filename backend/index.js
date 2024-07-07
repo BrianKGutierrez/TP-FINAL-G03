@@ -1,13 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser= require('body-parser');
 const {mongoose} = require('./database');
 
 const app = express();
 
 // Middlewares
-app.use(express.json());
+//app.use(express.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
-
+app.use (bodyParser.json({limit:'10000mb'}));
+app.use(bodyParser.urlencoded({limit:'10000mb',extend:true}));
 //rutas
 app.use('/api/pagos', require('./routes/pago.route.js'));
 app.use('/api/propietario', require('./routes/propietario.route.js'))
