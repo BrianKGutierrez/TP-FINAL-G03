@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
-const {Schema} = mongoose;
+const { Schema } = mongoose;
+
 const UsuarioSchema = new Schema({
-username: {type: String, required: true},
-password: {type:String, required:true},
-nombres: {type:String, required:true}, // opcional: puede almacenarse en otra clase 
-apellido: {type:String, required:true}, // opcional: puede almacenarse en otra clase
-perfil: {type:String, required: true} //administrador - visitante - administrativo 
+    email: { type: String, required: true },
+    usuario: { type: String, required: true }, // Debe estar presente y ser requerido
+    password: { type: String, required: true },
+    activo: { type: Boolean, required: true, default: true },
+    perfil: { type: String, required: true, enum: ['administrativo', 'propietario', 'dueño', 'usuario_comun'] }
 });
-//exporto objeto para que pueda ser usado en otros lugares
+
 module.exports = mongoose.model('Usuario', UsuarioSchema);
