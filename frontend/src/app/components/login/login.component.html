@@ -1,18 +1,23 @@
-<div class="col-md-6 col-md-offset-3">
-    <h2>Login</h2>
-    <form name="form">
-    <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" name="username" [(ngModel)]="userform.usuario" />
+
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h4>Login</h4>
+            </div>
+            <div class="card-body">
+                <form name="form">
+                    <div class="form-group">
+                        <label for="apellido">Nombre de Usuario:</label>
+                        <input type="text" class="form-control" id="usuario" name="usuario" placeholder="nombre de usuario" required autofocus [(ngModel)]="userform.usuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Contraseña:</label>
+                        <input type="text" class="form-control" id="contraseña" name="contraseña" placeholder="contraseña"[(ngModel)]="userform.password">
+                    </div>
+                        <button type="submit" class="btn btn-primary btn-block" (click)="login()">Login</button>
+                        <div class="alert-danger">{{msglogin}}</div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" name="password" [(ngModel)]="userform.password" />
-    </div>
-    <div class="form-group">
-    <button class="btn btn-primary" (click)="login()">Login</button>
-    </div>
-    <div class="alert-danger">{{msglogin}}</div>
-    </form>
-   </div>
-   

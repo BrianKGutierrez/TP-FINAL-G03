@@ -1,27 +1,51 @@
-<div class="row">
-<div class="col-md-4 mx-auto">
-    <div class="card">
-        <div class="card-header">
-            <h4>Registro de Usuario</h4>
-        </div>
-        <div class="card-body">
-            <form (ngSubmit)="Registrar()">
-                <div class="form-group">
-                    <label for="apellido">Email:</label>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="email" required autofocus>
-                </div>
-                <div class="form-group">
-                    <label for="nombre">Nombre de Usuario:</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario">
-                </div>
-                <div class="form-group">
-                    <label for="dni">contraseña:</label>
-                    <input type="text" class="form-control" id="password" name="password">
-                </div>
-                
-                    <button type="submit" class="btn btn-primary btn-block">Crear</button>
-               
-            </form>
-        </div>
+<div class="container">
+  <h2>Listado de Usuarios</h2>
+
+  <!-- Formulario para crear/editar usuario -->
+  <form [formGroup]="usuarioForm" (ngSubmit)="isEditing ? editarUsuario() : crearUsuario()">
+    <div class="form-group">
+      <label for="usuario">Usuario</label>
+      <input type="text" class="form-control" id="usuario" formControlName="usuario">
     </div>
+    <div class="form-group">
+      <label for="password">Contraseña</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+    </div>
+    <div class="form-group">
+      <label for="perfil">Perfil</label>
+      <input type="text" class="form-control" id="perfil" formControlName="perfil">
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="activo" formControlName="activo">
+      <label class="form-check-label" for="activo">Activo</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">{{ isEditing ? 'Editar Usuario' : 'Crear Usuario' }}</button>
+    <button type="button" class="btn btn-secondary mt-3 ml-2" (click)="cancelarEdicion()" [hidden]="!isEditing">Cancelar</button>
+  </form>
+
+  <hr>
+
+  <!-- Tabla para listar usuarios -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Perfil</th>
+        <th>Activo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.usuario }}</td>
+        <td>{{ usuario.perfil }}</td>
+        <td>{{ usuario.activo ? 'Sí' : 'No' }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="cargarUsuarioParaEdicion(usuario)">Editar</button>
+          <button class="btn btn-sm btn-danger ml-1" (click)="eliminarUsuario(usuario._id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
