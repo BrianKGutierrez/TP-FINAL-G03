@@ -1,131 +1,145 @@
 const mongoose = require("mongoose");
-const Usuario = require('./../models/usuario');
+const Usuario = require('../models/Usuario');
 const jwt = require('jsonwebtoken');
 
 const usuarioCtrl = {};
 
+// Crear usuario
 usuarioCtrl.createUsuario = async (req, res) => {
-    // En req.body se espera que vengan los datos de usuario a crear
     const usuario = new Usuario(req.body);
     try {
-        // Intentamos guardar el usuario en la base de datos
-        const nuevoUsuario = await usuario.save();
-
-        // Si se guarda correctamente, respondemos con éxito
+        await usuario.save();
         res.status(200).json({
-            status: '1',
-            msg: 'Usuario guardado.',
-            usuario: nuevoUsuario // Puedes enviar el usuario creado si lo necesitas
+            'status': '1',
+            'msg': 'Usuario guardado.'
         });
     } catch (error) {
-        // Si ocurre algún error al guardar el usuario, manejamos el error aquí
-        console.error("Error al crear usuario:", error);
         res.status(400).json({
-            status: '0',
-            msg: 'Error procesando al crear usuario'
+            'status': '0',
+            'msg': 'Error procesando operación.',
+            'error': error.message 
         });
     }
 };
 
+// Login usuario
 usuarioCtrl.loginUsuario = async (req, res) => {
-    // En req.body se espera que vengan las credenciales de login
     const criteria = {
         usuario: req.body.usuario,
         password: req.body.password
     };
     try {
-        // Buscamos el usuario en la base de datos
         const user = await Usuario.findOne(criteria);
         if (!user) {
             res.json({
                 status: 0,
-                msg: "Usuario no encontrado"
+                msg: "not found"
             });
         } else {
-            const unToken = jwt.sign({ id: user._id }, "secretkey");
+           
             res.json({
                 status: 1,
-                msg: "Éxito",
-                usuario: user.usuario, // Retorno información útil para el frontend
+                msg: "success",
+                usuario: user.usuario,
                 perfil: user.perfil,
                 userid: user._id,
-                token: unToken
+                email: user.email,
+                activo: user.activo,
+                token: token // retorno el token generado
             });
         }
     } catch (error) {
-        // Manejo de errores al buscar el usuario
-        console.error("Error al iniciar sesión:", error);
         res.json({
             status: 0,
-            msg: 'Error'
+            msg: 'error'
         });
     }
 };
+// Obtener todos los usuarios
 usuarioCtrl.getUsuarios = async (req, res) => {
     try {
         const usuarios = await Usuario.find();
-        res.json(usuarios);
+        res.status(200).json({
+            'status': '1',
+            'msg': 'Usuarios encontrados',
+            'data': usuarios
+        });
     } catch (error) {
-        console.error("Error al obtener usuarios:", error);
         res.status(400).json({
-            status: '0',
-            msg: 'Error al obtener usuarios'
+            'status': '0',
+            'msg': 'Error procesando operación',
+            'error': error.message
         });
     }
 };
 
+// Obtener usuario por ID
 usuarioCtrl.getUsuario = async (req, res) => {
     try {
         const usuario = await Usuario.findById(req.params.id);
         if (!usuario) {
-            return res.status(404).json({
-                status: '0',
-                msg: 'Usuario no encontrado'
+            res.status(404).json({
+                'status': '0',
+                'msg': 'Usuario no encontrado'
+            });
+        } else {
+            res.status(200).json({
+                'status': '1',
+                'msg': 'Usuario encontrado',
+                'data': usuario
             });
         }
-        res.json(usuario);
     } catch (error) {
-        console.error("Error al obtener el usuario:", error);
         res.status(400).json({
-            status: '0',
-            msg: 'Error al obtener el usuario'
+            'status': '0',
+            'msg': 'Error procesando operación'
         });
     }
 };
 
-usuarioCtrl.editUsuario = async (req, res) => {
+// Actualizar usuario
+usuarioCtrl.updateUsuario = async (req, res) => {
     try {
-        const { id } = req.params;
-        const updatedUsuario = req.body; // Puedes enviar todo el cuerpo de la solicitud para actualizar
-
-        // Realizamos la actualización del usuario en la base de datos
-        await Usuario.findByIdAndUpdate(id, updatedUsuario, { new: true });
-
-        res.json({
-            status: '1',
-            msg: 'Usuario actualizado'
-        });
+        const usuario = await Usuario.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!usuario) {
+            res.status(404).json({
+                'status': '0',
+                'msg': 'Usuario no encontrado'
+            });
+        } else {
+            res.status(200).json({
+                'status': '1',
+                'msg': 'Usuario actualizado',
+                'data': usuario
+            });
+        }
     } catch (error) {
-        console.error("Error al actualizar el usuario:", error);
         res.status(400).json({
-            status: '0',
-            msg: 'Error al actualizar el usuario'
+            'status': '0',
+            'msg': 'Error procesando operación'
         });
     }
 };
 
+// Eliminar usuario
 usuarioCtrl.deleteUsuario = async (req, res) => {
     try {
-        await Usuario.findByIdAndRemove(req.params.id);
-        res.status(200).json({
-            status: '1',
-            msg: 'Usuario eliminado'
-        });
+        const usuario = await Usuario.findByIdAndDelete(req.params.id);
+        if (!usuario) {
+            res.status(404).json({
+                'status': '0',
+                'msg': 'Usuario no encontrado'
+            });
+        } else {
+            res.status(200).json({
+                'status': '1',
+                'msg': 'Usuario eliminado'
+            });
+        }
     } catch (error) {
-        console.error("Error al eliminar el usuario:", error);
         res.status(400).json({
-            status: '0',
-            msg: 'Error al eliminar el usuario'
+            'status': '0',
+            'msg': 'Error procesando operación'
         });
     }
 };
