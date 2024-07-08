@@ -61,5 +61,73 @@ usuarioCtrl.loginUsuario = async (req, res) => {
         });
     }
 };
+usuarioCtrl.getUsuarios = async (req, res) => {
+    try {
+        const usuarios = await Usuario.find();
+        res.json(usuarios);
+    } catch (error) {
+        console.error("Error al obtener usuarios:", error);
+        res.status(400).json({
+            status: '0',
+            msg: 'Error al obtener usuarios'
+        });
+    }
+};
+
+usuarioCtrl.getUsuario = async (req, res) => {
+    try {
+        const usuario = await Usuario.findById(req.params.id);
+        if (!usuario) {
+            return res.status(404).json({
+                status: '0',
+                msg: 'Usuario no encontrado'
+            });
+        }
+        res.json(usuario);
+    } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+        res.status(400).json({
+            status: '0',
+            msg: 'Error al obtener el usuario'
+        });
+    }
+};
+
+usuarioCtrl.editUsuario = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedUsuario = req.body; // Puedes enviar todo el cuerpo de la solicitud para actualizar
+
+        // Realizamos la actualización del usuario en la base de datos
+        await Usuario.findByIdAndUpdate(id, updatedUsuario, { new: true });
+
+        res.json({
+            status: '1',
+            msg: 'Usuario actualizado'
+        });
+    } catch (error) {
+        console.error("Error al actualizar el usuario:", error);
+        res.status(400).json({
+            status: '0',
+            msg: 'Error al actualizar el usuario'
+        });
+    }
+};
+
+usuarioCtrl.deleteUsuario = async (req, res) => {
+    try {
+        await Usuario.findByIdAndRemove(req.params.id);
+        res.status(200).json({
+            status: '1',
+            msg: 'Usuario eliminado'
+        });
+    } catch (error) {
+        console.error("Error al eliminar el usuario:", error);
+        res.status(400).json({
+            status: '0',
+            msg: 'Error al eliminar el usuario'
+        });
+    }
+};
 
 module.exports = usuarioCtrl;
