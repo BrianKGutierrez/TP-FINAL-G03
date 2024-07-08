@@ -8,11 +8,13 @@ import { FormPropietarioComponent } from './components/form-propietario/form-pro
 import { FormLocalComponent } from './components/form-local/form-local.component';
 import { AlquilerCreateComponent } from './components/alquiler-create/alquiler-create.component';
 import { AlquilerListComponent } from './components/alquiler-list/alquiler-list.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { HomeComponent } from './components/home/home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent,LoginComponent,LocalesComponent,PropietarioComponent,FormPropietarioComponent,FormLocalComponent,AlquilerCreateComponent,AlquilerListComponent,AlquilerListComponent],
+  imports: [RouterOutlet,HeaderComponent,LoginComponent,LocalesComponent,PropietarioComponent,FormPropietarioComponent,FormLocalComponent,AlquilerCreateComponent,AlquilerListComponent,AlquilerListComponent, SignupComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

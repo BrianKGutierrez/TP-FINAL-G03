@@ -1,18 +1,17 @@
 export class Usuario {
         _id!: string;
-        username!: string;
+        usuario!: string;
+        email!: string;
         password!: string;
-        nombres!: string;
-        apellido!: string;
+        activo!: boolean;
         perfil!: string;
-    constructor(id:string="", username:string="", password:string="", nombres:string="", 
-        apellido:string="", perfil:string=""){
+    constructor(id:string="", usuario:string="", password:string="", activo:boolean=true, perfil:string="",email:string=""){
         this._id = id;
-        this.username = username;
+        this.usuario = usuario;
         this.password = password;
-        this.nombres = nombres;
-        this.apellido = apellido; 
+        this.activo = activo;
         this.perfil = perfil;
+        this.email = email;
     }
 }
         

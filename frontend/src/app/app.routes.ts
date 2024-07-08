@@ -7,6 +7,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AlquilerListComponent } from './components/alquiler-list/alquiler-list.component';
 import { AlquilerCreateComponent } from './components/alquiler-create/alquiler-create.component';
 import { AlquilerEditComponent } from './components/alquiler-edit/alquiler-edit.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
     
@@ -31,5 +33,7 @@ export const routes: Routes = [
     { path: 'alquileres', component: AlquilerListComponent },
     { path: 'alquileres/crear', component: AlquilerCreateComponent},
     { path: 'alquileres/editar/:id', component: AlquilerEditComponent },
+    {path: 'registrar', component:SignupComponent},
+    { path: 'home', component: HomeComponent },
 
 ];

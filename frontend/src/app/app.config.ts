@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     multi: true
    },
     provideRouter(routes),
-     provideClientHydration(), 
+     
      provideHttpClient(withInterceptorsFromDi())],
   
 };

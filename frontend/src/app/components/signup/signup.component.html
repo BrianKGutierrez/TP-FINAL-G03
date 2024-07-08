@@ -1,0 +1,27 @@
+<div class="row">
+<div class="col-md-4 mx-auto">
+    <div class="card">
+        <div class="card-header">
+            <h4>Registro de Usuario</h4>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="Registrar()">
+                <div class="form-group">
+                    <label for="apellido">Email:</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="email" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre de Usuario:</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario">
+                </div>
+                <div class="form-group">
+                    <label for="dni">contraseña:</label>
+                    <input type="text" class="form-control" id="password" name="password">
+                </div>
+                
+                    <button type="submit" class="btn btn-primary btn-block">Crear</button>
+               
+            </form>
+        </div>
+    </div>
+</div>

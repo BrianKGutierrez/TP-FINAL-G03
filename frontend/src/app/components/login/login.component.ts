@@ -26,18 +26,19 @@ export class LoginComponent {
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
   login() {
-  this.loginService.login(this.userform.username, this.userform.password)
+  this.loginService.login(this.userform.usuario, this.userform.password)
   .subscribe(
   (result) => {
   var user = result;
   if (user.status == 1){
     //guardamos el tokek localmente
-    sessionStorage.setItem("token", user.token);
-
+    sessionStorage.setItem("token", user.token)
     //guardamos el user en cookies en el cliente
-    sessionStorage.setItem("user", user.username);
+    sessionStorage.setItem("usuario", user.usuario);
     sessionStorage.setItem("userid", user.userid);
     sessionStorage.setItem("perfil", user.perfil);
+    sessionStorage.setItem("email", user.email);
+    sessionStorage.setItem("perfil", user.activo);
     //redirigimos a home o a pagina que llamo
     this.router.navigateByUrl(this.returnUrl);
   } else {
