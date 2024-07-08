@@ -21,6 +21,15 @@
             <li><a class="dropdown-item" [routerLink]="['alquileres/crear']">Crear</a></li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Pagos
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['pagos']">Lista de Pagos</a></li>
+            <li><a class="dropdown-item" [routerLink]="['pagos-form']">Realizar Pago</a></li>
+          </ul>
+        </li>
       </ul>
       <div class="ml-auto">
         <a *ngIf="!loginService.userLoggedIn()" [routerLink]="['login']">(Login)</a>
