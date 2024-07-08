@@ -9,6 +9,8 @@ import { AlquilerCreateComponent } from './components/alquiler-create/alquiler-c
 import { AlquilerEditComponent } from './components/alquiler-edit/alquiler-edit.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
+import { PagosComponent } from './components/pagos/pagos.component';
+import { PagosFormComponent } from './components/pagos-form/pagos-form.component';
 
 export const routes: Routes = [
     
@@ -35,5 +37,8 @@ export const routes: Routes = [
     { path: 'alquileres/editar/:id', component: AlquilerEditComponent },
     {path: 'registrar', component:SignupComponent},
     { path: 'home', component: HomeComponent },
+
+    { path: 'pagos', component: PagosComponent },
+    { path: 'pagos-form', component: PagosFormComponent }
 
 ];

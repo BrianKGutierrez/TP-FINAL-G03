@@ -10,11 +10,13 @@ import { AlquilerCreateComponent } from './components/alquiler-create/alquiler-c
 import { AlquilerListComponent } from './components/alquiler-list/alquiler-list.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
+import { PagosComponent } from './components/pagos/pagos.component';
+import { PagosFormComponent } from './components/pagos-form/pagos-form.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent,LoginComponent,LocalesComponent,PropietarioComponent,FormPropietarioComponent,FormLocalComponent,AlquilerCreateComponent,AlquilerListComponent,AlquilerListComponent, SignupComponent, HomeComponent],
+  imports: [RouterOutlet,HeaderComponent,LoginComponent,LocalesComponent,PropietarioComponent,FormPropietarioComponent,FormLocalComponent,AlquilerCreateComponent,AlquilerListComponent,AlquilerListComponent, SignupComponent, HomeComponent,PagosComponent,PagosFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
