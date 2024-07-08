@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PagoService } from '../../services/pago.service';
 
 @Component({
   selector: 'app-pagos',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './pagos.component.css'
 })
 export class PagosComponent {
+
+  
+
+
 
 }

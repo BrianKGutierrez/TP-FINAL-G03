@@ -17,7 +17,7 @@ app.use('/api/propietario', require('./routes/propietario.route.js'))
 app.use('/api/local', require('./routes/local.route.js'));
 app.use('/api/usuario', require('./routes/usuario.route'))
 app.use('/api/alquiler', require('./routes/alquiler.route'));
-
+app.use('/api/mercado-pago', require('./routes/mercadoPago.route.js'));
 //setting
 app.set('port', process.env.PORT || 3000);
 
