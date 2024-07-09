@@ -34,13 +34,13 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.getUsuarios();
+    this.getUsuarios();
   }
 
   getUsuarios(): void {
     this.usuarioService.getUsuarios().subscribe(
-      (data) => {
-        this.usuarios = data;
+      (res:any) => {
+        this.usuarios = res.data;
       },
       (error) => {
         console.error('Error al obtener usuarios:', error);
