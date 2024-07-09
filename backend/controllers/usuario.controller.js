@@ -93,39 +93,50 @@ usuarioCtrl.getUsuario = async (req, res) => {
     }
 };
 
-usuarioCtrl.editUsuario = async (req, res) => {
+// Actualizar usuario
+usuarioCtrl.updateUsuario = async (req, res) => {
     try {
-        const { id } = req.params;
-        const updatedUsuario = req.body; // Puedes enviar todo el cuerpo de la solicitud para actualizar
-
-        // Realizamos la actualización del usuario en la base de datos
-        await Usuario.findByIdAndUpdate(id, updatedUsuario, { new: true });
-
-        res.json({
-            status: '1',
-            msg: 'Usuario actualizado'
-        });
+        const usuario = await Usuario.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!usuario) {
+            res.status(404).json({
+                'status': '0',
+                'msg': 'Usuario no encontrado'
+            });
+        } else {
+            res.status(200).json({
+            
+                'status': '1',
+                'msg': 'Usuario actualizado',
+                'data': usuario
+            });
+        }
     } catch (error) {
-        console.error("Error al actualizar el usuario:", error);
         res.status(400).json({
-            status: '0',
-            msg: 'Error al actualizar el usuario'
+            'status': '0',
+            'msg': 'Error procesando operación'
         });
     }
 };
 
+// Eliminar usuario
 usuarioCtrl.deleteUsuario = async (req, res) => {
     try {
-        await Usuario.findByIdAndRemove(req.params.id);
-        res.status(200).json({
-            status: '1',
-            msg: 'Usuario eliminado'
-        });
+        const usuario = await Usuario.findByIdAndDelete(req.params.id);
+        if (!usuario) {
+            res.status(404).json({
+                'status': '0',
+                'msg': 'Usuario no encontrado'
+            });
+        } else {
+            res.status(200).json({
+                'status': '1',
+                'msg': 'Usuario eliminado'
+            });
+        }
     } catch (error) {
-        console.error("Error al eliminar el usuario:", error);
         res.status(400).json({
-            status: '0',
-            msg: 'Error al eliminar el usuario'
+            'status': '0',
+            'msg': 'Error procesando operación'
         });
     }
 };
