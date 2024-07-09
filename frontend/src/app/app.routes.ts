@@ -39,8 +39,9 @@ export const routes: Routes = [
     { path: 'alquileres/editar/:id', component: AlquilerEditComponent },
     {path: 'registrar', component:SignupComponent},
     { path: 'home', component: HomeComponent },
+    { path: 'pagos-form/:estado', component: PagosFormComponent },
     { path: 'pagos', component: PagosComponent },
-    { path: 'pagos-form', component: PagosFormComponent },
+  
     {path:'promocion', component: PromocionComponent}, 
     {path:'promocion-form/:id', component :PromocionFormComponent},
 ];
