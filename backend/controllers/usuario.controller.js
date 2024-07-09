@@ -61,38 +61,47 @@ usuarioCtrl.loginUsuario = async (req, res) => {
         });
     }
 };
+// Obtener todos los usuarios
 usuarioCtrl.getUsuarios = async (req, res) => {
     try {
         const usuarios = await Usuario.find();
-        res.json(usuarios);
+        res.status(200).json({
+            'status': '1',
+            'msg': 'Usuarios encontrados',
+            'data': usuarios
+        });
     } catch (error) {
-        console.error("Error al obtener usuarios:", error);
         res.status(400).json({
-            status: '0',
-            msg: 'Error al obtener usuarios'
+            'status': '0',
+            'msg': 'Error procesando operación',
+            'error': error.message
         });
     }
 };
 
+// Obtener usuario por ID
 usuarioCtrl.getUsuario = async (req, res) => {
     try {
         const usuario = await Usuario.findById(req.params.id);
         if (!usuario) {
-            return res.status(404).json({
-                status: '0',
-                msg: 'Usuario no encontrado'
+            res.status(404).json({
+                'status': '0',
+                'msg': 'Usuario no encontrado'
+            });
+        } else {
+            res.status(200).json({
+                'status': '1',
+                'msg': 'Usuario encontrado',
+                'data': usuario
             });
         }
-        res.json(usuario);
     } catch (error) {
-        console.error("Error al obtener el usuario:", error);
         res.status(400).json({
-            status: '0',
-            msg: 'Error al obtener el usuario'
+            'status': '0',
+            'msg': 'Error procesando operación'
         });
     }
 };
-
 // Actualizar usuario
 usuarioCtrl.updateUsuario = async (req, res) => {
     try {
