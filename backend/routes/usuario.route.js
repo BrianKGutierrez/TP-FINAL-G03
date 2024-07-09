@@ -7,9 +7,16 @@ const autCtrl = require('./../controllers/auth.controller');//necesario para el 
 router.post('/',usuarioCtrl.createUsuario); // Crear usuario
 router.post('/login', usuarioCtrl.loginUsuario); // Login de usuario
 
-router.get('/',usuarioCtrl.getUsuarios); // Obtener todos los usuarios
-router.get('/:id', usuarioCtrl.getUsuario); // Obtener usuario por ID
-router.put('/:id', usuarioCtrl.editUsuario); // Actualizar usuario por ID
-router.delete('/:id', usuarioCtrl.deleteUsuario); // Eliminar usuario por ID
+// Ruta para obtener un usuario por ID
+router.get('/:id', usuarioCtrl.getUsuario);
+
+// Ruta para actualizar un usuario por ID
+router.put('/:id', usuarioCtrl.updateUsuario);
+
+// Ruta para obtener todos los usuarios
+router.get('/', usuarioCtrl.getUsuarios);
+
+// Ruta para eliminar un usuario por ID
+router.delete('/:id', usuarioCtrl.deleteUsuario);
 
 module.exports = router;
