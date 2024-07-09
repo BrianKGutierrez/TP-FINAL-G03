@@ -25,16 +25,16 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.usuarioForm = this.fb.group({
-      _id: [''],
       usuario: ['', Validators.required],
       password: ['', Validators.required],
       activo: [true],
-      perfil: ['']
+      email: [''],
+     perfil: ['']
     });
   }
 
   ngOnInit(): void {
-    this.getUsuarios();
+    //this.getUsuarios();
   }
 
   getUsuarios(): void {
@@ -58,6 +58,7 @@ export class SignupComponent implements OnInit {
       },
       (error) => {
         console.error('Error al crear usuario:', error);
+        console.log(newUser);
       }
     );
   }

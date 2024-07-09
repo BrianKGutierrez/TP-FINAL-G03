@@ -5,14 +5,14 @@ export class Usuario {
         password!: string;
         activo!: boolean;
         perfil!: string;
-    constructor(id:string="", usuario:string="", password:string="", activo:boolean=true, perfil:string="",email:string=""){
-        this._id = id;
+    /*constructor(usuario:string="", password:string="", activo:boolean=true, perfil:string="",email:string=""){
+       // this._id = id;
         this.usuario = usuario;
         this.password = password;
         this.activo = activo;
         this.perfil = perfil;
         this.email = email;
-    }
+    }*/
 }
         
 
