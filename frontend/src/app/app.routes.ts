@@ -11,6 +11,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { PagosComponent } from './components/pagos/pagos.component';
 import { PagosFormComponent } from './components/pagos-form/pagos-form.component';
+import { PromocionComponent } from './components/promocion/promocion.component';
+import { PromocionFormComponent } from './components/promocion-form/promocion-form.component';
 
 export const routes: Routes = [
     
@@ -37,8 +39,8 @@ export const routes: Routes = [
     { path: 'alquileres/editar/:id', component: AlquilerEditComponent },
     {path: 'registrar', component:SignupComponent},
     { path: 'home', component: HomeComponent },
-
     { path: 'pagos', component: PagosComponent },
-    { path: 'pagos-form', component: PagosFormComponent }
-
+    { path: 'pagos-form', component: PagosFormComponent },
+    {path:'promocion', component: PromocionComponent}, 
+    {path:'promocion-form/:id', component :PromocionFormComponent},
 ];

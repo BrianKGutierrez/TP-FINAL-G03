@@ -30,6 +30,15 @@
             <li><a class="dropdown-item" [routerLink]="['pagos-form']">Realizar Pago</a></li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Promociones
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['promocion']">Lista de Promociones</a></li>
+            <li><a class="dropdown-item" [routerLink]="['promocion-form', '0']">Registrar Promocion</a></li>
+          </ul>
+        </li>
       </ul>
       <div class="ml-auto">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">

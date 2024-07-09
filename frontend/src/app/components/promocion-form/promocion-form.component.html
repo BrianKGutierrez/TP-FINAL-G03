@@ -1,0 +1,104 @@
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center">
+        <h4>Formulario de promocion</h4>
+    </div>
+    <form #promocionForm="ngForm">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required [(ngModel)]="promocion.nombre"
+                #nombre="ngModel">
+            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+                <div *ngIf="nombre.errors?.['required']">
+                    Titulo es requerido.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripcion</label>
+            <input type="datetime" class="form-control" id="descripcion" name="descripcion" required
+                [(ngModel)]="promocion.descripcion" #descripcion="ngModel">
+            <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="alert alert-danger">
+
+                <div *ngIf="descripcion.errors?.['required']">
+                    Descripcion es requerida.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="fechaInicio" class="form-label">Fecha Inicio</label>
+            <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required
+                [(ngModel)]="promocion.fechaInicio" #fechaInicio="ngModel">
+            <div *ngIf="fechaInicio.invalid && (fechaInicio.dirty || fechaInicio.touched)" class="alert alert-danger">
+
+                <div *ngIf="fechaInicio.errors?.['required']">
+                    Fecha Inicio es requerida.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="fechaFin" class="form-label">Fecha Fin</label>
+            <div *ngIf="accion=='update'">
+                <p>{{promocion.fechaFin}}</p>
+            </div>
+            <input type="date" class="form-control" id="fechaFin" name="fechaFin" [(ngModel)]="promocion.fechaFin"
+                #fechaFin="ngModel" required>
+
+            <div *ngIf="fechaFin.invalid && (fechaFin.dirty || fechaFin.touched)" class="alert alert-danger">
+                <div *ngIf="fechaFin.errors?.['required']">
+                    Fecha Fin es requerida.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="categoria" class="form-label">Categoria</label>
+            <input type="text" class="form-control" id="categoria" name="categoria" [(ngModel)]="promocion.categoria"
+                #categoria="ngModel" required>
+            <div *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)" class="alert alert-danger">
+
+                <div *ngIf="categoria.errors?.['required']">
+                    Categoria es requerida.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="promocion.precio"
+                #precio="ngModel" required>
+            <div *ngIf="precio.invalid && (precio.dirty || precio.touched)" class="alert alert-danger">
+
+                <div *ngIf="precio.errors?.['required']">
+                    Precio es requerido.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="descuento" class="form-label">Descuento</label>
+            <input type="percentage" class="form-control" id="descuento" name="descuento"
+                [(ngModel)]="promocion.descuento" #descuento="ngModel" required>
+            <div *ngIf="descuento.invalid && (descuento.dirty || descuento.touched)" class="alert alert-danger">
+
+                <div *ngIf="descuento.errors?.['required']">
+                    Descuento es requerido.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="fileInput" class="form-label">Imagen</label>
+            <div *ngIf="accion=='update'">
+                <img [src]="promocion.imagen" class="card-img-thumbnail" alt="...">
+            </div>
+            <div class="input-group">
+                <input type="file" id="fileInput" name="imagen" accept="image/*"
+                    class="form-control rounded-pill form-control-sm" (change)="onFileSelected($event)">
+            </div>
+        </div>
+
+        <div class="mt-5" *ngIf="promocionForm.form.valid">
+            <button *ngIf="accion=='new'" type="submit" class="btn btn-info"
+                (click)="registrarPromocion()">Registrar</button>
+            <button *ngIf="accion=='update'" type="submit" class="btn btn-info"
+                (click)="actualizarPromocion()">Actualizar</button>
+        </div>
+
+    </form>
+</div>
