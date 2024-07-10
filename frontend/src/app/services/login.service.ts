@@ -16,7 +16,7 @@ export class LoginService {
   'Content-Type': 'application/json'
   }) 
   } 
-  let body = JSON.stringify({ usuarios: usuario, password: password });
+  let body = JSON.stringify({ usuario: usuario, password: password });
   console.log(body);
   return this._http.post(this.hostBase + 'login', body, httpOption);
   }
@@ -32,14 +32,14 @@ export class LoginService {
   }
   public userLoggedIn(){
     var resultado = false;
-    var usuarios = sessionStorage.getItem("usuario");
-    if(usuarios!=null){
+    var usuario = sessionStorage.getItem("user");
+    if(usuario!=null){
     resultado = true;
     }
     return resultado;
     }
     public userLogged(){
-    var usuarios = sessionStorage.getItem("usuario");
+    var usuarios = sessionStorage.getItem("user");
     return usuarios;
     }
     public idLogged(){
