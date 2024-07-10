@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,35 +10,18 @@ export class LoginService {
   constructor(private _http:HttpClient) { 
   this.hostBase = "http://localhost:3000/api/usuario/";
   }
-  public login(usuario: string, password: string): Observable<any> {
-    const httpOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-  
-    let body = JSON.stringify({ usuario: usuario, password: password });
-    console.log(body); // Verifica que los datos se estén enviando correctamente
-  
-    return this._http.post(this.hostBase + 'login', body, httpOption).pipe(
-      tap((response: any) => {
-        console.log('Respuesta del servidor:', response); // Verifica la respuesta del servidor completa
-  
-        // Almacenar datos en sessionStorage
-        sessionStorage.setItem('user', response.usuario);
-        sessionStorage.setItem('perfil', response.perfil);
-        sessionStorage.setItem('userid', response.userid);
-        sessionStorage.setItem('token', response.token);
-      }),
-      catchError(error => {
-        console.error('Error al iniciar sesión:', error);
-        throw error; // Propaga el error para que sea manejado por el suscriptor
-      })
-    );
+  public login(usuario: string, password: string):Observable<any> {
+  const httpOption = {
+  headers: new HttpHeaders({
+  'Content-Type': 'application/json'
+  }) 
+  } 
+  let body = JSON.stringify({ usuario: usuario, password: password });
+  console.log(body);
+  return this._http.post(this.hostBase + 'login', body, httpOption);
   }
   public logout() {
   //borro el vble almacenado mediante el storage
-  sessionStorage.removeItem("user");
   sessionStorage.removeItem("user");
   sessionStorage.removeItem("perfil");
   sessionStorage.removeItem("userid");
@@ -47,11 +30,8 @@ export class LoginService {
    //borro el token almacenado mediante el storage
  sessionStorage.removeItem("token");
   } 
-  } 
   public userLoggedIn(){
     var resultado = false;
-    var usuario = sessionStorage.getItem("user");
-    if(usuario!=null){
     var usuario = sessionStorage.getItem("user");
     if(usuario!=null){
     resultado = true;
@@ -59,8 +39,6 @@ export class LoginService {
     return resultado;
     }
     public userLogged(){
-    var usuario = sessionStorage.getItem("user");
-    return usuario;
     var usuario = sessionStorage.getItem("user");
     return usuario;
     }
@@ -75,12 +53,5 @@ export class LoginService {
       return "";
       }
       }
-      public getUserRole(): string | null {
-        const perfil = sessionStorage.getItem('perfil');
-        console.log('Perfil recuperado:', perfil); // Depura aquí para verificar el valor
-        return perfil;
-      }
-      
-      
       
    }
