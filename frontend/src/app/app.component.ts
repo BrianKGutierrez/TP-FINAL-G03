@@ -12,13 +12,30 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { PagosComponent } from './components/pagos/pagos.component';
 import { PagosFormComponent } from './components/pagos-form/pagos-form.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent,LoginComponent,LocalesComponent,PropietarioComponent,FormPropietarioComponent,FormLocalComponent,AlquilerCreateComponent,AlquilerListComponent,AlquilerListComponent, SignupComponent, HomeComponent,PagosComponent,PagosFormComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    LoginComponent,
+    LocalesComponent,
+    PropietarioComponent,
+    FormPropietarioComponent,
+    FormLocalComponent,
+    AlquilerCreateComponent,
+    AlquilerListComponent,
+    AlquilerListComponent,
+    SignupComponent,
+    HomeComponent,
+    PagosComponent,
+    PagosFormComponent,
+    FooterComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'frontend';
