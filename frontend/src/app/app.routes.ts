@@ -15,7 +15,7 @@ import { PromocionComponent } from './components/promocion/promocion.component';
 import { PromocionFormComponent } from './components/promocion-form/promocion-form.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { AuthGuard } from './guards/auth.guard';
-import { RoleGuard } from './guards/role.guard';
+import { roleGuard } from './guards/roleguards.guard';
 
 export const routes: Routes = [
   {
@@ -39,10 +39,11 @@ export const routes: Routes = [
   { path: 'alquileres', component: AlquilerListComponent ,  canActivate: [AuthGuard],},
   { path: 'alquileres/crear', component: AlquilerCreateComponent,  canActivate: [AuthGuard], },
   { path: 'alquileres/editar/:id', component: AlquilerEditComponent ,  canActivate: [AuthGuard],},
-  { path: 'registrar', component: SignupComponent ,  canActivate: [AuthGuard]},
+  { path: 'registrar', component: SignupComponent ,  canActivate: [AuthGuard],canMatch: [roleGuard],
+    data: { roles: ['administrativo', 'propietario', 'dueño'] }},
   { path: 'home', component: HomeComponent },
   { path: 'pagos-form/:estado', component: PagosFormComponent , canActivate: [AuthGuard], },
-  { path: 'pagos', component: PagosComponent,  canActivate: [AuthGuard,RoleGuard], data: { expectedRoles: ['administrativo', 'dueño'] }},
+  { path: 'pagos', component: PagosComponent,  canActivate: [AuthGuard]},
 
   { path: 'promocion', component: PromocionComponent },
   { path: 'promocion-form/:id', component: PromocionFormComponent ,  canActivate: [AuthGuard],},
