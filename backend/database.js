@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-//Conexion a base de datos Atlas
-const URI = 'mongodb+srv://grupo03:ugJX3ZgQtrLpheXZ@akirashopping.h1ddstp.mongodb.net/';
+const URI = 'mongodb://127.0.0.1/proyectodb';
 mongoose.connect(URI)
 .then(db=>console.log('DB is connected')) 
 .catch(err=>console.error(err))
