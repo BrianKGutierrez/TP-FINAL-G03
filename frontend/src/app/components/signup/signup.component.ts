@@ -25,11 +25,11 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.usuarioForm = this.fb.group({
-      _id: [''],
       usuario: ['', Validators.required],
       password: ['', Validators.required],
       activo: [true],
-      perfil: ['']
+      email: [''],
+     perfil: ['']
     });
   }
 
@@ -39,8 +39,8 @@ export class SignupComponent implements OnInit {
 
   getUsuarios(): void {
     this.usuarioService.getUsuarios().subscribe(
-      (data) => {
-        this.usuarios = data;
+      (res:any) => {
+        this.usuarios = res.data;
       },
       (error) => {
         console.error('Error al obtener usuarios:', error);
@@ -58,6 +58,7 @@ export class SignupComponent implements OnInit {
       },
       (error) => {
         console.error('Error al crear usuario:', error);
+        console.log(newUser);
       }
     );
   }

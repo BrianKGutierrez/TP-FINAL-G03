@@ -1,0 +1,23 @@
+<div class="container justify-content-center">
+    <div class=" row m-5 d-flex">
+        <div class="col md-9">
+            <h2>Productos</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let p of promociones">
+            <div class="card" style="width: 18rem;">
+                <img [src]="p.imagen" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{p.nombre}}</h5>
+                    <h5 class="card-title">${{p.descripcion}}</h5>
+                    <p class="card-text">{{p.fechaInicio}}</p>
+                    <p class="card-text">{{p.fechaFin}}</p>
+                </div>
+
+            </div>
+            <button type="button" class="btn btn-primary" (click)="eliminar(p._id)">Eliminar</button>
+            <button type="button" class="btn btn-primary" (click)="modificar(p._id)">Modificar</button>
+        </div>
+    </div>
+</div>

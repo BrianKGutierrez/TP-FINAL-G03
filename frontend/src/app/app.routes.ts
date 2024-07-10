@@ -11,34 +11,46 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { PagosComponent } from './components/pagos/pagos.component';
 import { PagosFormComponent } from './components/pagos-form/pagos-form.component';
+import { PromocionComponent } from './components/promocion/promocion.component';
+import { PromocionFormComponent } from './components/promocion-form/promocion-form.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 export const routes: Routes = [
-    
-    {
-        path: 'propietario', component : PropietarioComponent
-        
-    },
-    {
-        path: 'formpropietario/:id', component : FormPropietarioComponent
-        
-    },
-    {
-        path: 'formLocal/:id/:filtro',
-        component: FormLocalComponent,
-    }, 
-    
-    {
-        path: 'locales/:filtro',
-        component: LocalesComponent,
-    },
-    {path: 'login', component: LoginComponent},
-    { path: 'alquileres', component: AlquilerListComponent },
-    { path: 'alquileres/crear', component: AlquilerCreateComponent},
-    { path: 'alquileres/editar/:id', component: AlquilerEditComponent },
-    {path: 'registrar', component:SignupComponent},
-    { path: 'home', component: HomeComponent },
+  {
+    path: 'propietario',
+    component: PropietarioComponent,
+  },
+  {
+    path: 'formpropietario/:id',
+    component: FormPropietarioComponent,
+  },
+  {
+    path: 'formLocal/:id/:filtro',
+    component: FormLocalComponent,
+  },
 
-    { path: 'pagos', component: PagosComponent },
-    { path: 'pagos-form', component: PagosFormComponent }
+  {
+    path: 'locales/:filtro',
+    component: LocalesComponent,
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'alquileres', component: AlquilerListComponent },
+  { path: 'alquileres/crear', component: AlquilerCreateComponent },
+  { path: 'alquileres/editar/:id', component: AlquilerEditComponent },
+  { path: 'registrar', component: SignupComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'pagos-form/:estado', component: PagosFormComponent },
+  { path: 'pagos', component: PagosComponent },
 
+  { path: 'promocion', component: PromocionComponent },
+  { path: 'promocion-form/:id', component: PromocionFormComponent },
+  {
+    path: 'inicio',
+    component: InicioComponent,
+  },
+  {
+    path: '',
+    redirectTo: '/inicio',
+    pathMatch: 'full',
+  },
 ];

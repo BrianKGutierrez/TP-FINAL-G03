@@ -1,32 +1,31 @@
 <div class="container mt-5">
-    <h2 class="mb-4">Realizar Pago Mensual</h2>
-    <form id="paymentForm">
-      <div class="mb-3">
-        <label for="local" class="form-label">Local</label>
-        <select class="form-select" id="local" required>
-          <option value="" disabled selected>Seleccione el local</option>
-          <!-- Aquí se rellenarán los locales dinámicamente -->
-          <option value="1">Local 1</option>
-          <option value="2">Local 2</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="monto" class="form-label">Monto</label>
-        <input type="number" class="form-control" id="monto" placeholder="Ingrese el monto" required>
-      </div>
-      <div class="mb-3">
-        <label for="medioPago" class="form-label">Medio de Pago</label>
-        <select class="form-select" id="medioPago" required>
-          <option value="" disabled selected>Seleccione el medio de pago</option>
-          <!-- Aquí se rellenarán los medios de pago dinámicamente -->
-          <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
-          <option value="Transferencia Bancaria">Transferencia Bancaria</option>
-          <option value="Mercado Pago">Mercado Pago</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">Realizar Pago</button>
+  <h2 class="mb-4">Realizar Pago</h2>
+  <form id="paymentForm">
+    <div class="mb-3">
+      <label for="local" class="form-label">Local</label>
+      <select class="form-select" id="local" required>
+        <option value="" disabled selected>Seleccione el local</option>
+        <!-- Aquí se rellenarán los locales dinámicamente -->
+        <option value="1">Local 1</option>
+        <option value="2">Local 2</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="monto" class="form-label">Monto</label>
+      <input type="number" class="form-control" name="monto" [(ngModel)]="pago.monto" id="monto"  placeholder="Ingrese el monto" required>
+    </div>
+    <div class="mb-3">
+      <label for="medioPago" class="form-label">Medio de Pago</label>
+      <select class="form-select" id="medioPago" required [(ngModel)]="pago.medioDePago" name="medioPago">
+        <option value="" disabled selected>Seleccione el medio de pago</option>
+        <!-- Aquí se rellenarán los medios de pago dinámicamente -->
+        <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+        <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+        <option value="Mercado Pago">Mercado Pago</option>
+      </select>
+    </div>
+     
+      <button type="submit" class="btn btn-primary" (click)="generarPago()">Realizar Pago</button>
+      <button type="submit" class="btn btn-primary">Cancelar Pago</button><!--Se debe volver a la otra pagina-->
     </form>
-</div>
-<div>
-  <button (click)="generarPago()">Generar Pago</button>
 </div>

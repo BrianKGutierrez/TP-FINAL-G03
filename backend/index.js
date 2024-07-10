@@ -8,16 +8,17 @@ const app = express();
 // Middlewares
 //app.use(express.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
-app.use (bodyParser.json({limit:'10000mb'}));
-app.use(bodyParser.urlencoded({limit:'10000mb',extend:true}));
+app.use (bodyParser.json({limit:'10mb'}));
+app.use(bodyParser.urlencoded({limit:'10mb',extend:true}));
 //rutas
 app.use('/api/pagos', require('./routes/pago.route.js'));
 app.use('/api/cuota', require('./routes/cuota.route.js'));
 app.use('/api/propietario', require('./routes/propietario.route.js'))
 app.use('/api/local', require('./routes/local.route.js'));
 app.use('/api/usuario', require('./routes/usuario.route'))
-app.use('/api/alquiler', require('./routes/alquiler.route'));
+//app.use('/api/alquiler', require('./routes/alquiler.route'));
 app.use('/api/mercado-pago', require('./routes/mercadoPago.route.js'));
+app.use ('/api/promocion', require('./routes/promocion.route')); 
 //setting
 app.set('port', process.env.PORT || 3000);
 
