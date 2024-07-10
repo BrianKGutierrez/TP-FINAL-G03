@@ -1,3 +1,45 @@
 nav.navbar {
-    width: 100%;
-  }
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* styles.css o cualquier archivo CSS global */
+
+.navbar {
+  background-color: #f8f9fa; /* Color del fondo del navbar */
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.nav-link {
+  color: #333;
+}
+
+.nav-link:hover {
+  color: #ff7f00; /* Color naranja al pasar el cursor */
+}
+
+.account-button {
+  background-color: #fff3cd; /* Color crema */
+  border: 1px solid transparent;
+  color: #333;
+  margin-right: 10px;
+}
+
+.account-button:hover {
+  background-color: #ff7f00; /* Color naranja al pasar el cursor */
+  color: #fff;
+}
+
+.register-button {
+  background-color: #002147; /* Azul marino */
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+.register-button:hover {
+  background-color: #ff7f00; /* Color naranja al pasar el cursor */
+  color: #fff;
+}
