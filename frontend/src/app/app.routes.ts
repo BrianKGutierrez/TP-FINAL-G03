@@ -40,7 +40,7 @@ export const routes: Routes = [
   { path: 'alquileres/crear', component: AlquilerCreateComponent,  canActivate: [AuthGuard], },
   { path: 'alquileres/editar/:id', component: AlquilerEditComponent ,  canActivate: [AuthGuard],},
   { path: 'registrar', component: SignupComponent ,  canActivate: [AuthGuard],canMatch: [roleGuard],
-    data: { roles: ['administrativo', 'propietario', 'dueño'] }},
+    data: { roles: [ 'dueño'] }},
   { path: 'home', component: HomeComponent },
   { path: 'pagos-form/:estado', component: PagosFormComponent , canActivate: [AuthGuard], },
   { path: 'pagos', component: PagosComponent,  canActivate: [AuthGuard]},
