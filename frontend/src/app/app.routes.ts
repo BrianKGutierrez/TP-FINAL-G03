@@ -42,7 +42,7 @@ export const routes: Routes = [
   { path: 'registrar', component: SignupComponent ,  canActivate: [AuthGuard]},
   { path: 'home', component: HomeComponent },
   { path: 'pagos-form/:estado', component: PagosFormComponent , canActivate: [AuthGuard], },
-  { path: 'pagos', component: PagosComponent,  canActivate: [AuthGuard]},
+  { path: 'pagos', component: PagosComponent,  canActivate: [AuthGuard,RoleGuard], data: { expectedRoles: ['administrativo', 'dueño'] }},
 
   { path: 'promocion', component: PromocionComponent },
   { path: 'promocion-form/:id', component: PromocionFormComponent ,  canActivate: [AuthGuard],},

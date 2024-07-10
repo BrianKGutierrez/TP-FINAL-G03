@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +10,35 @@ export class LoginService {
   constructor(private _http:HttpClient) { 
   this.hostBase = "http://localhost:3000/api/usuario/";
   }
-  public login(usuario: string, password: string):Observable<any> {
-  const httpOption = {
-  headers: new HttpHeaders({
-  'Content-Type': 'application/json'
-  }) 
-  } 
-  let body = JSON.stringify({ usuario: usuario, password: password });
-  console.log(body);
-  return this._http.post(this.hostBase + 'login', body, httpOption);
+  public login(usuario: string, password: string): Observable<any> {
+    const httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+  
+    const body = JSON.stringify({ usuario: usuario, password: password });
+    console.log('Solicitud de login:', body);
+  
+    return this._http.post(this.hostBase + 'login', body, httpOption).pipe(
+      tap((response: any) => {
+        console.log('Respuesta del servidor:', response);
+        sessionStorage.setItem('user', response.usuario);
+        sessionStorage.setItem('perfil', response.perfil);
+        sessionStorage.setItem('userid', response.userid);
+        sessionStorage.setItem('token', response.token);
+        console.log('Datos almacenados en sessionStorage:', {
+          user: sessionStorage.getItem('user'),
+          perfil: sessionStorage.getItem('perfil'),
+          userid: sessionStorage.getItem('userid'),
+          token: sessionStorage.getItem('token')
+        });
+      }),
+      catchError(error => {
+        console.error('Error al iniciar sesión:', error);
+        throw error;
+      })
+    );
   }
   public logout() {
   //borro el vble almacenado mediante el storage
@@ -53,5 +73,11 @@ export class LoginService {
       return "";
       }
       }
+      public getUserRole(): string | null {
+        const perfil = sessionStorage.getItem('perfil');
+        console.log('Perfil recuperado:', perfil); // Depura aquí para verificar el valor
+        return perfil;
+      }
+      
       
    }
