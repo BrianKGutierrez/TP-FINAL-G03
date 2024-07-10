@@ -1,7 +1,18 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" style="width: 100%;">
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-body-tertiary"
+  style="width: 100%"
+>
   <div class="container-fluid">
     <a class="navbar-brand" href="#">AKIRA SHOPPING</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -10,52 +21,104 @@
           <a class="nav-link" [routerLink]="['propietario']">Propietario</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"[routerLink]="['/locales','todos']">Local</a>
+          <a class="nav-link" [routerLink]="['/locales', 'todos']">Local</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Alquileres-Form
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['alquileres']">Listar</a></li>
-            <li><a class="dropdown-item" [routerLink]="['alquileres/crear']">Crear</a></li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['alquileres']">Listar</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['alquileres/crear']"
+                >Crear</a
+              >
+            </li>
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Pagos
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['pagos']">Lista de Pagos</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/pagos-form','pendiente']">Realizar Pago</a></li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['pagos']"
+                >Lista de Pagos</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                [routerLink]="['/pagos-form', 'pendiente']"
+                >Realizar Pago</a
+              >
+            </li>
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Promociones
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['promocion']">Lista de Promociones</a></li>
-            <li><a class="dropdown-item" [routerLink]="['promocion-form', '0']">Registrar Promocion</a></li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['promocion']"
+                >Lista de Promociones</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['promocion-form', '0']"
+                >Registrar Promocion</a
+              >
+            </li>
           </ul>
         </li>
       </ul>
       <div class="ml-auto">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-        <a class="nav-link btn btn-primary" *ngIf="!loginService.userLoggedIn()" [routerLink]="['login']">Iniciar Sesion</a>
-        <a  class="nav-link btn btn-danger" *ngIf="loginService.userLoggedIn()" [routerLink]="['login']" (click)="logout()">
-          {{loginService.userLogged()}} (logout)
-        </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn btn-success"[routerLink]="['registrar']">Registrar Usuario</a>
-        </li>
-      </ul>
-        
+          <li class="nav-item">
+            <a
+              class="nav-link btn account-button"
+              *ngIf="!loginService.userLoggedIn()"
+              [routerLink]="['login']"
+            >
+              <i class="fas fa-user"></i> Mi cuenta
+            </a>
+            <a
+              class="nav-link btn btn-danger"
+              *ngIf="loginService.userLoggedIn()"
+              [routerLink]="['login']"
+              (click)="logout()"
+            >
+              {{ loginService.userLogged() }} (logout)
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn register-button" [routerLink]="['registrar']"
+              >Registrar Usuario</a
+            >
+          </li>
+        </ul>
       </div>
-  
-      
     </div>
   </div>
 </nav>
