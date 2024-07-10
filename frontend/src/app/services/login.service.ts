@@ -39,6 +39,7 @@ export class LoginService {
   public logout() {
   //borro el vble almacenado mediante el storage
   sessionStorage.removeItem("user");
+  sessionStorage.removeItem("user");
   sessionStorage.removeItem("perfil");
   sessionStorage.removeItem("userid");
   sessionStorage.removeItem("email");
@@ -46,8 +47,11 @@ export class LoginService {
    //borro el token almacenado mediante el storage
  sessionStorage.removeItem("token");
   } 
+  } 
   public userLoggedIn(){
     var resultado = false;
+    var usuario = sessionStorage.getItem("user");
+    if(usuario!=null){
     var usuario = sessionStorage.getItem("user");
     if(usuario!=null){
     resultado = true;
@@ -55,6 +59,8 @@ export class LoginService {
     return resultado;
     }
     public userLogged(){
+    var usuario = sessionStorage.getItem("user");
+    return usuario;
     var usuario = sessionStorage.getItem("user");
     return usuario;
     }
