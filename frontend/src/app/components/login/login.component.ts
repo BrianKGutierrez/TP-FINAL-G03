@@ -34,7 +34,7 @@ export class LoginComponent {
     //guardamos el tokek localmente
     sessionStorage.setItem("token", user.token)
     //guardamos el user en cookies en el cliente
-    sessionStorage.setItem("usuario", user.usuario);
+    sessionStorage.setItem("user", user.usuario);
     sessionStorage.setItem("userid", user.userid);
     sessionStorage.setItem("perfil", user.perfil);
     sessionStorage.setItem("email", user.email);
