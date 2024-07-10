@@ -13,7 +13,12 @@
     </div>
     <div class="form-group">
       <label for="perfil">Perfil</label>
-      <input type="text" class="form-control" id="perfil" formControlName="perfil">
+      <select class="form-select" name="perfil" id="perfil" formControlName="perfil">
+        <option value="usuario_comun">Usuario Común</option>
+        <option value="administrativo">Administrativo</option>
+        <option value="propietario">Propietario</option>
+        <option value="dueño">Dueño</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="email">email</label>

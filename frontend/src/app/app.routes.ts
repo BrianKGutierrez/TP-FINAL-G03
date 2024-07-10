@@ -14,19 +14,21 @@ import { PagosFormComponent } from './components/pagos-form/pagos-form.component
 import { PromocionComponent } from './components/promocion/promocion.component';
 import { PromocionFormComponent } from './components/promocion-form/promocion-form.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 export const routes: Routes = [
   {
     path: 'propietario',
-    component: PropietarioComponent,
+    component: PropietarioComponent,  canActivate: [AuthGuard]
   },
   {
     path: 'formpropietario/:id',
-    component: FormPropietarioComponent,
+    component: FormPropietarioComponent,  canActivate: [AuthGuard],
   },
   {
     path: 'formLocal/:id/:filtro',
-    component: FormLocalComponent,
+    component: FormLocalComponent,  canActivate: [AuthGuard]
   },
 
   {
@@ -34,16 +36,16 @@ export const routes: Routes = [
     component: LocalesComponent,
   },
   { path: 'login', component: LoginComponent },
-  { path: 'alquileres', component: AlquilerListComponent },
-  { path: 'alquileres/crear', component: AlquilerCreateComponent },
-  { path: 'alquileres/editar/:id', component: AlquilerEditComponent },
-  { path: 'registrar', component: SignupComponent },
+  { path: 'alquileres', component: AlquilerListComponent ,  canActivate: [AuthGuard],},
+  { path: 'alquileres/crear', component: AlquilerCreateComponent,  canActivate: [AuthGuard], },
+  { path: 'alquileres/editar/:id', component: AlquilerEditComponent ,  canActivate: [AuthGuard],},
+  { path: 'registrar', component: SignupComponent ,  canActivate: [AuthGuard]},
   { path: 'home', component: HomeComponent },
-  { path: 'pagos-form/:estado', component: PagosFormComponent },
-  { path: 'pagos', component: PagosComponent },
+  { path: 'pagos-form/:estado', component: PagosFormComponent , canActivate: [AuthGuard], },
+  { path: 'pagos', component: PagosComponent,  canActivate: [AuthGuard]},
 
   { path: 'promocion', component: PromocionComponent },
-  { path: 'promocion-form/:id', component: PromocionFormComponent },
+  { path: 'promocion-form/:id', component: PromocionFormComponent ,  canActivate: [AuthGuard],},
   {
     path: 'inicio',
     component: InicioComponent,

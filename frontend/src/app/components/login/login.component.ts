@@ -23,7 +23,7 @@ export class LoginComponent {
   private loginService:LoginService){
   }
   ngOnInit() {
-  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/inicio';
   }
   login() {
   this.loginService.login(this.userform.usuario, this.userform.password)
@@ -34,7 +34,7 @@ export class LoginComponent {
     //guardamos el tokek localmente
     sessionStorage.setItem("token", user.token)
     //guardamos el user en cookies en el cliente
-    sessionStorage.setItem("usuario", user.usuario);
+    sessionStorage.setItem("user", user.usuario);
     sessionStorage.setItem("userid", user.userid);
     sessionStorage.setItem("perfil", user.perfil);
     sessionStorage.setItem("email", user.email);
