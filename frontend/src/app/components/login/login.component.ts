@@ -23,7 +23,7 @@ export class LoginComponent {
   private loginService:LoginService){
   }
   ngOnInit() {
-  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/inicio';
   }
   login() {
   this.loginService.login(this.userform.usuario, this.userform.password)
