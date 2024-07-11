@@ -1,7 +1,7 @@
 const Promocion = require('../models/promocion');
 const promocionCtrl = {}
 promocionCtrl.getPromociones = async (req, res) => {
-    var promociones = await Promocion.find();
+    var promociones = await Promocion.find().populate("local");
     res.json(promociones);
 }
 promocionCtrl.createPromocion = async (req, res) => {
@@ -20,7 +20,7 @@ promocionCtrl.createPromocion = async (req, res) => {
     }
 }
 promocionCtrl.getPromocion = async (req, res) => {
-    const promocion = await Promocion.findById(req.params.id);
+    const promocion = await Promocion.findById(req.params.id).populate("local");
     res.json(promocion);
 }
 promocionCtrl.editPromocion = async (req, res) => {
