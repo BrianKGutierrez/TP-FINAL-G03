@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Local } from '../../models/local';
 import { Promocion } from '../../models/promocion';
+import { ContactoComponent } from '../contacto/contacto.component';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ContactoComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css',
 })

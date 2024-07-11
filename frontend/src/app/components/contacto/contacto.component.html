@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <!-- Columna del formulario -->
+    <div class="col-md-6">
+      <form [formGroup]="formulario">
+        <h2>Escribinos</h2>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="nombreApellido"
+              placeholder="Nombre y Apellido"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="Email"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            formControlName="consulta"
+            rows="5"
+            placeholder="Consulta"
+          ></textarea>
+        </div>
+        <re-captcha
+          (resolved)="executeReCaptcha($event)"
+          siteKey="6Lc6LQ0qAAAAAL6slmwdLvy7H6zs7gWjsqHwuxvh"
+        >
+        </re-captcha>
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          (click)="createConsulta()"
+        >
+          Enviar
+        </button>
+      </form>
+    </div>
+    <!-- Columna de información adicional -->
+    <div class="col-md-6">
+      <div class="ubicacion">
+        <h3 style="color: #001f3f">Dónde estamos</h3>
+        <p>
+          Calle Belgrano 1500 (Ex Av. Virrey Toledo) 702<br />
+          Jujuy / Argentina<br />
+          Tel: 0800 222 2299<br />
+          Locales Comerciales: Lunes a Domingo y Feriados: 10:00 / 22:00 hs<br />
+          Locales Gastronómicos: Lunes a Domingo y Feriados: 10:00 / 00:00 hs
+        </p>
+      </div>
+      <div class="como-llegar">
+        <h3 style="color: #001f3f">Cómo llegar</h3>
+        <div class="colectivos">
+          <div style="color: #001f3f">Colectivo / Líneas:</div>
+          <div>
+            74 / 85 / 95 / 100 (ramales 1 y 3) / 247 / 271 / 293 / 295 / 446 /
+            570 (comunal y diferencial)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
