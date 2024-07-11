@@ -1,7 +1,8 @@
+<!-- VISTA PARA EL PROPIETARIO -->
 <div class="container justify-content-center">
     <div class=" row m-5 d-flex">
         <div class="col md-9">
-            <h2>Productos</h2>
+            <h2>Promociones</h2>
         </div>
     </div>
     <div class="row">
@@ -9,10 +10,10 @@
             <div class="card" style="width: 18rem;">
                 <img [src]="p.imagen" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">{{p.nombre}}</h5>
-                    <h5 class="card-title">${{p.descripcion}}</h5>
-                    <p class="card-text">{{p.fechaInicio}}</p>
-                    <p class="card-text">{{p.fechaFin}}</p>
+                    <h5 class="card-title">{{p.titulo}}</h5>
+                    <p class="card-text">{{p.descripcion}}</p>
+                    <p class="card-text">{{p.fechaInicio| date: 'dd/MM/yyyy'}}</p>
+                    <p class="card-text">{{p.fechaFin | date: 'dd/MM/yyyy'}}</p>
                 </div>
 
             </div>
@@ -20,4 +21,62 @@
             <button type="button" class="btn btn-primary" (click)="modificar(p._id)">Modificar</button>
         </div>
     </div>
+</div>
+<!--VISTA PARA EL ADMINISTRADOR-->
+
+<div class="container">
+    <h2>Fitrar</h2>
+    <!-- <div class="form-check">
+        <input class="form-check-input" type="radio" name="filtro" id="publicado" [(ngModel)]="filtro" value=true (click)="filtrar()">
+        <label class="form-check-label" for="publicado">
+            Promociones publicadas
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="filtro" id="noPublicado" [ngModel]="filtro" value=false (click)="filtrar()">
+        <label class="form-check-label" for="noPublicado">
+            Promociones no publicadas
+        </label>
+    </div> -->
+    <div class="input-group">
+        <label class="input-group-text" for="publicado">Estado de promocion</label>
+        <select class="form-select" aria-label="Example select with button addon" name="publicado" id="publicado"
+            [(ngModel)]="publicado">
+            <option value="true">Promociones Publicadas</option>
+            <option value="false">Promociones No Publicadas</option>
+        </select>
+        <button class="btn btn-outline-secondary" type="button" (click)="filtrar()">Filtrar</button>
+    </div>
+   
+    <h2>Listado de Promociones</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Valida desde:</th>
+                <th>Valida hasta:</th>
+                <th>Local</th>
+                <th>Categoria</th>
+                <th>Publicado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let promocion of promociones">
+                <td>{{ promocion.titulo}}</td>
+                <td>{{ promocion.descripcion }}</td>
+                <td>{{ promocion.fechaInicio | date:'dd/MM/yyyy' }}</td>
+                <td>{{ promocion.fechaFin | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ promocion.local.nroLocal }}, {{promocion.local.titulo}}</td>
+                <td>{{ promocion.categoria }}</td>
+                <td>{{ promocion.publicado ===true ? 'SI' : promocion.publicado===false ? 'NO' : 'Desconocido'}}</td>
+                <td>
+                    <button class="btn btn-danger" (click)="promocionar(promocion)">Promocionar</button>
+                    <a class="btn btn-primary" (click)="modificar(promocion._id)">Ver Mas</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

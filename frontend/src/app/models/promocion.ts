@@ -1,15 +1,18 @@
+import { Local } from "./local";
+
 export class Promocion {
     _id!: string;
-    nombre!: string;
+    titulo!: string;
     descripcion!: string;
     fechaInicio!: string;
     fechaFin!: string;
     categoria!: string;
-    precio!: number;
-    descuento!: number;
+    local!:Local; 
+    publicado!: boolean; 
     imagen!: string; 
     
     constructor(){
+        this.publicado=false; 
 
     }
 }

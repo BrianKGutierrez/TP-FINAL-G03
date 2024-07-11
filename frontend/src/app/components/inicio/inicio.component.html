@@ -148,10 +148,10 @@
       <div class="card promotion-card">
         <img [src]="p.imagen" class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{{ p.nombre }}</h5>
-          <h5 class="card-title">${{ p.descripcion }}</h5>
-          <p class="card-text">{{ p.fechaInicio }}</p>
-          <p class="card-text">{{ p.fechaFin }}</p>
+          <h5 class="card-title">{{ p.titulo }}</h5>
+          <p class="card-text">{{ p.descripcion }}</p>
+          <p class="card-text">{{ p.fechaInicio | date: 'dd/MM/yyyy' }}</p>
+          <p class="card-text">{{ p.fechaFin | date: 'dd/MM/yyyy'}}</p>
         </div>
       </div>
     </div>

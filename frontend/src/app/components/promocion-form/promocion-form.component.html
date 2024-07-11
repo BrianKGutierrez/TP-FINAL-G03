@@ -3,85 +3,77 @@
         <h4>Formulario de promocion</h4>
     </div>
     <form #promocionForm="ngForm">
+        <!-- TITULO DE PROMOCION -->
         <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" required [(ngModel)]="promocion.nombre"
-                #nombre="ngModel">
-            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
-                <div *ngIf="nombre.errors?.['required']">
+            <label for="titulo" class="form-label">Titulo de la Promocion: </label>
+            <input type="text" class="form-control" id="titulo" name="titulo" required [(ngModel)]="promocion.titulo"
+                #titulo="ngModel">
+            <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)" class="text-danger">
+                <div *ngIf="titulo.errors?.['required']">
                     Titulo es requerido.
                 </div>
             </div>
         </div>
+        <!-- DESCRIPCION DE PROMOCION -->
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripcion</label>
-            <input type="datetime" class="form-control" id="descripcion" name="descripcion" required
+            <input type="text" class="form-control" id="descripcion" name="descripcion" required
                 [(ngModel)]="promocion.descripcion" #descripcion="ngModel">
-            <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="alert alert-danger">
-
+            <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="text-danger">
                 <div *ngIf="descripcion.errors?.['required']">
                     Descripcion es requerida.
                 </div>
             </div>
         </div>
+        <!-- FECHA INICIO DE PROMOCION -->
         <div class="mb-3">
             <label for="fechaInicio" class="form-label">Fecha Inicio</label>
             <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required
                 [(ngModel)]="promocion.fechaInicio" #fechaInicio="ngModel">
-            <div *ngIf="fechaInicio.invalid && (fechaInicio.dirty || fechaInicio.touched)" class="alert alert-danger">
+            <div *ngIf="fechaInicio.invalid && (fechaInicio.dirty || fechaInicio.touched)" class="text-danger">
 
                 <div *ngIf="fechaInicio.errors?.['required']">
                     Fecha Inicio es requerida.
                 </div>
             </div>
         </div>
+        <!-- FECHA FIN DE PROMOCION -->
         <div class="mb-3">
             <label for="fechaFin" class="form-label">Fecha Fin</label>
-            <div *ngIf="accion=='update'">
-                <p>{{promocion.fechaFin}}</p>
-            </div>
             <input type="date" class="form-control" id="fechaFin" name="fechaFin" [(ngModel)]="promocion.fechaFin"
                 #fechaFin="ngModel" required>
 
-            <div *ngIf="fechaFin.invalid && (fechaFin.dirty || fechaFin.touched)" class="alert alert-danger">
+            <div *ngIf="fechaFin.invalid && (fechaFin.dirty || fechaFin.touched)" class="text-danger">
                 <div *ngIf="fechaFin.errors?.['required']">
                     Fecha Fin es requerida.
                 </div>
             </div>
         </div>
+        <!-- CATEGORIA -->
         <div class="mb-3">
             <label for="categoria" class="form-label">Categoria</label>
             <input type="text" class="form-control" id="categoria" name="categoria" [(ngModel)]="promocion.categoria"
                 #categoria="ngModel" required>
-            <div *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)" class="alert alert-danger">
-
+            <div *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)" class="text-danger">
                 <div *ngIf="categoria.errors?.['required']">
                     Categoria es requerida.
                 </div>
             </div>
         </div>
+        <!-- LOCAL -->
         <div class="mb-3">
-            <label for="precio" class="form-label">Precio</label>
-            <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="promocion.precio"
-                #precio="ngModel" required>
-            <div *ngIf="precio.invalid && (precio.dirty || precio.touched)" class="alert alert-danger">
-
-                <div *ngIf="precio.errors?.['required']">
-                    Precio es requerido.
+            <label for="local" class="form-label">Local</label>
+            <select class="form-select" name="local" id="local" [(ngModel)]="promocion.local" #local="ngModel" required >
+                <option *ngFor="let l of locales" [ngValue]="l">{{l.titulo}}</option>
+            </select>
+            <div *ngIf="local.invalid && (local.dirty || local.touched)" class="text-danger">
+                <div *ngIf="local.errors?.['required']">
+                   Local es requerido
                 </div>
             </div>
-        </div>
-        <div class="mb-3">
-            <label for="descuento" class="form-label">Descuento</label>
-            <input type="percentage" class="form-control" id="descuento" name="descuento"
-                [(ngModel)]="promocion.descuento" #descuento="ngModel" required>
-            <div *ngIf="descuento.invalid && (descuento.dirty || descuento.touched)" class="alert alert-danger">
 
-                <div *ngIf="descuento.errors?.['required']">
-                    Descuento es requerido.
-                </div>
-            </div>
         </div>
+       <!-- IMAGEN -->
         <div class="mb-3">
             <label for="fileInput" class="form-label">Imagen</label>
             <div *ngIf="accion=='update'">

@@ -3,22 +3,33 @@ import { Promocion } from '../../models/promocion';
 import { PromocionService } from '../../services/promocion.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-promocion',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './promocion.component.html',
   styleUrl: './promocion.component.css'
 })
 export class PromocionComponent {
   promociones: Array<Promocion>=[]; 
+  publicado!:boolean; 
   constructor(private promocionService: PromocionService,
               private router: Router
   ){
     this.getPromociones(); 
 
 
+  }
+  filtrar(){
+    
+    this.promocionService.filtrarPromocionesByPublicado(this.publicado.toString()).subscribe(
+      data=>{
+        this.promociones=data; 
+      }
+    )
+    
   }
   getPromociones () {
     
@@ -35,6 +46,16 @@ export class PromocionComponent {
         console.log(error);
       }
     )
+  }
+  promocionar(promocion: Promocion){
+    promocion.publicado=true; 
+    this.promocionService.updatePromocion(promocion).subscribe(
+      data=>{
+          if(data.status==1){
+            alert("La promocion se ha publicado correctamente ");
+          }
+      }
+    ) 
   }
 
   modificar (id: string){
