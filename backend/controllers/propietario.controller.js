@@ -63,5 +63,16 @@ propietarioCtrl.deletePropietario = async (req, res) => {
         })
     }
 }
+propietarioCtrl.getPropietarioByIdUsuario =  async (req, res) => {
+ try {
+        const propietario = await Propietario.findOne({ idUsuario: req.params.id });
+        if (!propietario) {
+            return res.status(404).send('Propietario no encontrado');
+        }
+        res.json(propietario);
+    } catch (error) {
+        res.status(500).send('Error en el servidor');
+    }
+}
 
 module.exports = propietarioCtrl;
