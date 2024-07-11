@@ -20,15 +20,18 @@ import { roleGuard } from './guards/roleguards.guard';
 export const routes: Routes = [
   {
     path: 'propietario',
-    component: PropietarioComponent,  canActivate: [AuthGuard]
+    component: PropietarioComponent,  canActivate: [AuthGuard],canMatch: [roleGuard],
+    data: { roles: [ 'dueño', 'administrativo'] }
   },
   {
     path: 'formpropietario/:id',
-    component: FormPropietarioComponent,  canActivate: [AuthGuard],
+    component: FormPropietarioComponent,  canActivate: [AuthGuard],canMatch: [roleGuard],
+    data: { roles: [ 'dueño', 'administrativo'] }
+    
   },
   {
     path: 'formLocal/:id/:filtro',
-    component: FormLocalComponent,  canActivate: [AuthGuard]
+    component: FormLocalComponent,  canActivate: [AuthGuard],
   },
 
   {
@@ -36,14 +39,19 @@ export const routes: Routes = [
     component: LocalesComponent,
   },
   { path: 'login', component: LoginComponent },
-  { path: 'alquileres', component: AlquilerListComponent ,  canActivate: [AuthGuard],},
-  { path: 'alquileres/crear', component: AlquilerCreateComponent,  canActivate: [AuthGuard], },
-  { path: 'alquileres/editar/:id', component: AlquilerEditComponent ,  canActivate: [AuthGuard],},
+  { path: 'alquileres', component: AlquilerListComponent ,  canActivate: [AuthGuard],canMatch: [roleGuard],
+    data: { roles: [ 'dueño', 'administrativo','propietario'] }},
+  { path: 'alquileres/crear', component: AlquilerCreateComponent,  canActivate: [AuthGuard], canMatch: [roleGuard],
+    data: { roles: [ 'dueño', 'administrativo'] }},
+  { path: 'alquileres/editar/:id', component: AlquilerEditComponent ,  canActivate: [AuthGuard],canMatch: [roleGuard],
+    data: { roles: [ 'dueño', 'administrativo'] }},
   { path: 'registrar', component: SignupComponent ,  canActivate: [AuthGuard],canMatch: [roleGuard],
     data: { roles: [ 'dueño'] }},
   { path: 'home', component: HomeComponent },
-  { path: 'pagos-form/:estado', component: PagosFormComponent , canActivate: [AuthGuard], },
-  { path: 'pagos', component: PagosComponent,  canActivate: [AuthGuard]},
+  { path: 'pagos-form/:estado', component: PagosFormComponent , canActivate: [AuthGuard],canMatch: [roleGuard],
+    data: { roles: [ 'dueño', 'administrativo','propietario'] }},
+  { path: 'pagos', component: PagosComponent,   canActivate: [AuthGuard],canMatch: [roleGuard],
+    data: { roles: [ 'dueño', 'administrativo','propietario'] }},
 
   { path: 'promocion', component: PromocionComponent },
   { path: 'promocion-form/:id', component: PromocionFormComponent ,  canActivate: [AuthGuard],},

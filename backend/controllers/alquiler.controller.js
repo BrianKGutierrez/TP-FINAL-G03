@@ -78,7 +78,8 @@ alquilerCtrl.editAlquiler = async (req, res) => {
 // Eliminar un alquiler
 alquilerCtrl.deleteAlquiler = async (req, res) => {
     try {
-        await Alquiler.findByIdAndRemove(req.params.id);
+       
+        await Alquiler.deleteOne({ _id: req.params.id });
         res.status(200).json({
             'status': '1',
             'msg': 'Alquiler eliminado'

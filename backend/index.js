@@ -12,6 +12,7 @@ app.use (bodyParser.json({limit:'10mb'}));
 app.use(bodyParser.urlencoded({limit:'10mb',extend:true}));
 //rutas
 app.use('/api/pagos', require('./routes/pago.route.js'));
+app.use('/api/alquiler', require('./routes/alquiler.route.js'));
 app.use('/api/cuota', require('./routes/cuota.route.js'));
 app.use('/api/propietario', require('./routes/propietario.route.js'))
 app.use('/api/local', require('./routes/local.route.js'));

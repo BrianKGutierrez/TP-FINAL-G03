@@ -20,7 +20,7 @@
         <li class="nav-item" *ngIf="['administrativo', 'dueño'].includes(loginService.getUserRole() || '')">
           <a class="nav-link" [routerLink]="['propietario']">Propietario</a>
         </li>
-        <li class="nav-item" *ngIf="['administrativo', 'dueño'].includes(loginService.getUserRole() || '')">
+        <li class="nav-item" *ngIf="['administrativo', 'dueño', 'propietario'].includes(loginService.getUserRole() || '')">
           <a class="nav-link" [routerLink]="['/locales', 'todos']">Local</a>
         </li>
         <li class="nav-item dropdown" *ngIf="['administrativo', 'dueño','propietario'].includes(loginService.getUserRole() || '')">
@@ -55,7 +55,7 @@
             Pagos
           </a>
           <ul class="dropdown-menu">
-            <li *ngIf="['administrativo', 'dueño','propietario'].includes(loginService.getUserRole() || '')">
+            <li >
               <a class="dropdown-item" [routerLink]="['pagos']"
                 >Lista de Pagos</a
               >
