@@ -92,16 +92,4 @@ alquilerCtrl.deleteAlquiler = async (req, res) => {
     }
 };
 
-alquilerCtrl.getAlquilerByIdPropietario =  async (req, res) => {
-    try {
-           const alquiler = await Alquiler.find({ propietario: req.params.id }).populate('local propietario');
-           if (!alquiler) {
-               return res.status(404).send('Alquiler no encontrado');
-           }
-           res.json(alquiler);
-       } catch (error) {
-           res.status(500).send('Error en el servidor');
-       }
-   }
-
 module.exports = alquilerCtrl;

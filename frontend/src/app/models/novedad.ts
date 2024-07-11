@@ -7,17 +7,17 @@ export class Novedad {
   fechaFinalizacion: Date | string;
   descripcion: string;
   estado: boolean;
-  local: Local | string;
-  propietario: Propietario | string;
+  local: Local;
+  propietario: Propietario;
 
   constructor(
     _id: string = '',
     fechaCreacion: Date | string = new Date(),
-    fechaFinalizacion: Date | string = '',
+    fechaFinalizacion: Date | string = new Date(),
     descripcion: string = '',
     estado: boolean = false,
-    local: Local | string = '',
-    propietario: Propietario | string = ''
+    local: Local = new Local(),
+    propietario: Propietario = new Propietario()
   ) {
     this._id = _id;
     this.fechaCreacion = fechaCreacion;

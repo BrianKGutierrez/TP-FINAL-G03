@@ -8,50 +8,34 @@ import {
 import { NovedadService } from '../../services/novedad.service';
 import { Novedad } from '../../models/novedad';
 import { CommonModule } from '@angular/common';
-import { AlquilerService } from '../../services/alquiler.service';
-import { PropietarioService } from '../../services/propietario.service';
-import { Propietario } from '../../models/propietario';
-import { Alquiler } from '../../models/alquiler';
 
 @Component({
   selector: 'app-novedad-form',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule],
   templateUrl: './novedad-form.component.html',
   styleUrl: './novedad-form.component.css',
 })
 export class NovedadFormComponent {
+  // formulario!: FormGroup;
   novedad: Novedad = new Novedad();
-  alquiler!: any;
-  alquileres!: Array<any>;
-
   constructor(
     private novedadService: NovedadService,
-    private alquilerService: AlquilerService,
-    private propietarioService: PropietarioService
-  ) {
-    console.log(this.novedad);
-    this.validarAlquileres();
-  }
+    private fb: FormBuilder
+  ) {}
 
-  validarAlquileres() {
-    let idUsaurio = sessionStorage.getItem('userid') ?? '';
-    this.propietarioService
-      .getPropietarioByIdUsuario(idUsaurio)
-      .subscribe((propietario: Propietario) => {
-        let idPropietario = propietario._id;
-        this.alquilerService
-          .getAlquilerbyIdPropietario(idPropietario)
-          .subscribe((alquileres: Array<Alquiler>) => {
-            this.alquileres = alquileres;
-          });
-      });
-  }
+  // ngOnInit(): void {
+  //   this.formulario = this.fb.group({
+  //     fechaCreacion: [new Date(), Validators.required],
+  //     fechaFinalizacion: [''],
+  //     descripcion: ['', Validators.required],
+  //     estado: [false],
+  //     local: ['', Validators.required],
+  //     propietario: ['', Validators.required],
+  //   });
+  // }
 
   createNovedad() {
-    this.novedad.local = this.alquiler.local._id;
-    this.novedad.propietario = this.alquiler.propietario._id;
-
     this.novedadService.createNovedad(this.novedad).subscribe((resp) => {
       this.novedad = new Novedad();
       console.log(resp);

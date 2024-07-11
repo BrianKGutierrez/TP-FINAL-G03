@@ -29,8 +29,7 @@ export class NovedadService {
       }),
     };
     let body: any = JSON.stringify(novedad);
-    delete body._id;
-    return this._http.post(this.hostBase, body, httpOptions);
+    return this._http.post(this.hostBase + '/', body, httpOptions);
   }
 
   updateNovedad(novedad: Novedad): Observable<any> {

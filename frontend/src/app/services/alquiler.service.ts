@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Alquiler } from '../models/alquiler';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AlquilerService {
   hostBase: string;
@@ -16,8 +16,8 @@ export class AlquilerService {
   getAlquileres(): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
+        'Content-Type': 'application/json'
+      })
     };
     return this._http.get(this.hostBase + '/', httpOptions);
   }
@@ -25,8 +25,8 @@ export class AlquilerService {
   createAlquiler(alquiler: Alquiler): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
+        'Content-Type': 'application/json'
+      })
     };
     let body: any = JSON.stringify(alquiler);
     return this._http.post(this.hostBase + '/', body, httpOptions);
@@ -35,8 +35,8 @@ export class AlquilerService {
   getAlquiler(id: string): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
+        'Content-Type': 'application/json'
+      })
     };
     return this._http.get(this.hostBase + '/' + id, httpOptions);
   }
@@ -44,35 +44,19 @@ export class AlquilerService {
   updateAlquiler(alquiler: Alquiler): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
+        'Content-Type': 'application/json'
+      })
     };
     let body: any = JSON.stringify(alquiler);
-    return this._http.put(
-      this.hostBase + '/' + alquiler._id,
-      body,
-      httpOptions
-    );
+    return this._http.put(this.hostBase + '/' + alquiler._id, body, httpOptions);
   }
 
   deleteAlquiler(id: string): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
+        'Content-Type': 'application/json'
+      })
     };
     return this._http.delete(this.hostBase + '/' + id, httpOptions);
-  }
-
-  getAlquilerbyIdPropietario(id: string): Observable<any> {
-    let httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-    return this._http.get(
-      this.hostBase + '/filterpropietario/' + id,
-      httpOptions
-    );
   }
 }
