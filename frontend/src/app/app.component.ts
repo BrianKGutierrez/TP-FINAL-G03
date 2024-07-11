@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PagosComponent } from './components/pagos/pagos.component';
 import { PagosFormComponent } from './components/pagos-form/pagos-form.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { PanelDeControlComponent } from './components/panel-de-control/panel-de-control.component';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HomeComponent,
     PagosComponent,
     PagosFormComponent,
+    PanelDeControlComponent,
     FooterComponent,
   ],
   templateUrl: './app.component.html',

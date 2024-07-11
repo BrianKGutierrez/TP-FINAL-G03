@@ -53,7 +53,7 @@
     </div>
     <div class="col-md-6">
       <p>
-        Somos el primer shopping de Salta y el más reconocido en el norte
+        Somos el primer shopping de Jujuy y el más reconocido en el norte
         argentino. En AKIRA contamos con un gran mix de marcas comerciales que
         se pueden encontrar tanto en locales como góndolas, entretenimiento y
         servicios; un tradicional patio de comidas y un gran corredor
@@ -69,7 +69,8 @@
         constancia, dedicación y experiencia son factores y premisas esenciales
         en nuestro equipo de trabajo para brindar la mejor calidad y experiencia
         AKIRA. Te invitamos a conocernos en uno de los puntos más importante de
-        la ciudad de Salta, cercano al centro y zonas turísticas.
+        la ciudad de San Salvador de Jujuy, cercano al centro y zonas
+        turísticas.
       </p>
     </div>
   </div>
@@ -147,10 +148,10 @@
       <div class="card promotion-card">
         <img [src]="p.imagen" class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{{ p.nombre }}</h5>
-          <h5 class="card-title">${{ p.descripcion }}</h5>
-          <p class="card-text">{{ p.fechaInicio }}</p>
-          <p class="card-text">{{ p.fechaFin }}</p>
+          <h5 class="card-title">{{ p.titulo }}</h5>
+          <p class="card-text">{{ p.descripcion }}</p>
+          <p class="card-text">{{ p.fechaInicio | date: 'dd/MM/yyyy' }}</p>
+          <p class="card-text">{{ p.fechaFin | date: 'dd/MM/yyyy'}}</p>
         </div>
       </div>
     </div>

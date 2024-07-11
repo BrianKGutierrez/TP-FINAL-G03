@@ -5,6 +5,8 @@ import { Promocion } from '../../models/promocion';
 import { PromocionService } from '../../services/promocion.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Local } from '../../models/local';
+import { LocalService } from '../../services/local.service';
 
 @Component({
   selector: 'app-promocion-form',
@@ -18,12 +20,15 @@ export class PromocionFormComponent {
   file: { base64: string, safeurl: SafeUrl | null };
   submitted: boolean = false;
   accion: string = '';
+  locales: Array<Local> = [];
   constructor(private activatedRoute: ActivatedRoute,
     private domSanitizer: DomSanitizer,
     private promocionService: PromocionService,
+    private localService: LocalService,
     private router: Router
   ) {
     this.iniciarVariable();
+    this.cargarLocales();
     this.file = { base64: '', safeurl: null }
 
   }
@@ -43,7 +48,25 @@ export class PromocionFormComponent {
     this.promocionService.getPromocionById(id).subscribe(
       (result) => {
         Object.assign(this.promocion, result);
+        this.promocion.local = this.locales.find(local => (local._id === this.promocion.local._id))!
       }
+    )
+  }
+  cargarLocales() {
+    this.locales = new Array<Local>();
+    this.localService.getLocales().subscribe(
+      (data) => {
+        let vlocal: Local = new Local();
+        data.forEach((element: any) => {
+          Object.assign(vlocal, element);
+          this.locales.push(vlocal);
+          vlocal = new Local();
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+
     )
   }
 

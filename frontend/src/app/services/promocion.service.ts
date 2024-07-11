@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Promocion } from '../models/promocion';
 import { Observable } from 'rxjs';
@@ -11,6 +11,17 @@ export class PromocionService {
   urlBase: string='http://localhost:3000/api/promocion/'
 
   constructor(private http: HttpClient) { }
+
+  filtrarPromocionesByPublicado (filtro: string): Observable <any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+
+      }),
+      params: new HttpParams()
+        .append('publicado', filtro)
+    }
+    return this.http.get(this.urlBase + 'filtrar', httpOptions);
+  }
   addPromocion(promocion:Promocion): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({

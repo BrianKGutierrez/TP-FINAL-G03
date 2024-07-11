@@ -1,0 +1,19 @@
+<div class="container">
+  <form>
+    <h2 class="titulo-novedades">NOVEDADES</h2>
+    <div class="form-group">
+      <textarea
+        class="form-control textarea-novedad"
+        [(ngModel)]="novedad.descripcion"
+        placeholder="Ingrese novedad"
+      ></textarea>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary btn-enviar"
+      (click)="createNovedad()"
+    >
+      Enviar
+    </button>
+  </form>
+</div>

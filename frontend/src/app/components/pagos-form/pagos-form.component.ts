@@ -62,6 +62,8 @@ export class PagosFormComponent {
   }
 
   generarPago() {
+    // Actualizar la fecha de pago antes de guardar
+    this.pago.fechaDePago = new Date(); // Esto asigna la fecha actual
     this.pagoService.guardarPago(this.pago);
     this.items = [
       {
