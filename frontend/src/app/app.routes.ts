@@ -14,6 +14,7 @@ import { PagosFormComponent } from './components/pagos-form/pagos-form.component
 import { PromocionComponent } from './components/promocion/promocion.component';
 import { PromocionFormComponent } from './components/promocion-form/promocion-form.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { PanelDeControlComponent } from './components/panel-de-control/panel-de-control.component';
 
 export const routes: Routes = [
   {
@@ -41,6 +42,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'pagos-form/:estado', component: PagosFormComponent },
   { path: 'pagos', component: PagosComponent },
+  { path: 'panel-control', component: PanelDeControlComponent },
 
   { path: 'promocion', component: PromocionComponent },
   { path: 'promocion-form/:id', component: PromocionFormComponent },

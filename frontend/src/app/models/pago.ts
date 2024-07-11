@@ -1,6 +1,6 @@
 export class Pago {
-    //fechaDePago!: Date
+    _id!: string;
+    fechaDePago!: Date
     monto!: number
     medioDePago!: string
-    _id!: string;
 }

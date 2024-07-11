@@ -1,0 +1,80 @@
+<div class="container">
+  <h1 style="text-align: center;">Panel de Control</h1>
+  
+  <!-- Botones -->
+  <div style="margin-bottom: 20px;">
+    <button class="btn btn-primary" (click)="obtenerLocales()">Obtener Locales</button>
+    <button class="btn btn-primary" (click)="obtenerPagos()" style="margin-left: 10px;">Obtener Pagos</button>
+  </div>
+
+  
+    <!-- Selector de mes -->
+  <div style="margin-bottom: 20px;">
+    <label for="mesSelector">Seleccione un mes:</label>
+    <select id="mesSelector" class="form-control" [(ngModel)]="mes" (change)="filtrarPagosPorMes(mes)">
+      <option value="Enero">Enero</option>
+      <option value="Febrero">Febrero</option>
+      <option value="Marzo">Marzo</option>
+      <option value="Abril">Abril</option>
+      <option value="Mayo">Mayo</option>
+      <option value="Junio">Junio</option>
+      <option value="Julio">Julio</option>
+      <option value="Agosto">Agosto</option>
+      <option value="Septiembre">Septiembre</option>
+      <option value="Octubre">Octubre</option>
+      <option value="Noviembre">Noviembre</option>
+      <option value="Diciembre">Diciembre</option>
+    </select>
+  </div>
+
+  <!-- Gráficos -->
+  <div class="row" style="display: flex; justify-content: space-between;">
+    <div class="col-md-4">
+      <!-- Gráfico de locales -->
+      <ngx-charts-advanced-pie-chart
+        [view]="view"
+        scheme="cool"
+        [results]="single"
+        [gradient]="gradient"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)"
+        style="flex: 1;"
+      >
+      </ngx-charts-advanced-pie-chart>
+    </div>
+    <div class="col-md-4">
+      <!-- Gráfico de todos los pagos -->
+      <ngx-charts-advanced-pie-chart
+        [view]="view"
+        scheme="vivid"
+        [results]="todosLosPagosChart"
+        [gradient]="gradient"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)"
+        style="flex: 1;"
+      >
+      </ngx-charts-advanced-pie-chart>
+    </div>
+    <div class="col-md-4">
+      <!-- Gráfico de pagos -->
+      <ngx-charts-advanced-pie-chart
+        [view]="view"
+        scheme="vivid"
+        [results]="pagosChart"
+        [gradient]="gradient"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)"
+        style="flex: 1;"
+      >
+      </ngx-charts-advanced-pie-chart>
+    </div>
+  </div>
+  
+  
+</div>
+
+
+

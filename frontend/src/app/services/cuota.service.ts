@@ -59,4 +59,6 @@ export class CuotaService {
     };
     return this._http.delete(this.hostBase + '/' + id, httpOptions);
   }
+
+  
 }
