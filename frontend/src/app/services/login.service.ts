@@ -9,7 +9,9 @@ export class LoginService {
   hostBase: string;
   constructor(private _http:HttpClient) { 
   this.hostBase = "http://localhost:3000/api/usuario/";
+  
   }
+  perfilUsuario:string|null = null;
   public login(usuario: string, password: string): Observable<any> {
     const httpOption = {
       headers: new HttpHeaders({
@@ -22,7 +24,7 @@ export class LoginService {
   
     return this._http.post(this.hostBase + 'login', body, httpOption).pipe(
       tap((response: any) => {
-        console.log('Respuesta del servidor:', response);
+        this.perfilUsuario = response.perfil;
         sessionStorage.setItem('user', response.usuario);
         sessionStorage.setItem('perfil', response.perfil);
         sessionStorage.setItem('userid', response.userid);
@@ -48,7 +50,8 @@ export class LoginService {
   sessionStorage.removeItem("email");
   sessionStorage.removeItem("activo");
    //borro el token almacenado mediante el storage
- sessionStorage.removeItem("token");
+  sessionStorage.removeItem("token");
+  this.perfilUsuario = null;
   } 
   public userLoggedIn(){
     var resultado = false;
@@ -73,11 +76,12 @@ export class LoginService {
       return "";
       }
       }
-      public getUserRole(): string | null {
-        const perfil = sessionStorage.getItem('perfil');
-        console.log('Perfil recuperado:', perfil); // Depura aquí para verificar el valor
-        return perfil;
+      public getUserRole(): string {
+        const perfil = this.perfilUsuario
+      
+        return perfil || ''; // Devolver una cadena vacía si el perfil es null
       }
+      
       
       
    }
