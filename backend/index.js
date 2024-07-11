@@ -16,7 +16,7 @@ app.use('/api/cuota', require('./routes/cuota.route.js'));
 app.use('/api/propietario', require('./routes/propietario.route.js'))
 app.use('/api/local', require('./routes/local.route.js'));
 app.use('/api/usuario', require('./routes/usuario.route'))
-//app.use('/api/alquiler', require('./routes/alquiler.route'));
+app.use('/api/alquiler', require('./routes/alquiler.route'));
 app.use('/api/mercado-pago', require('./routes/mercadoPago.route.js'));
 app.use ('/api/promocion', require('./routes/promocion.route')); 
 app.use('/api/consulta', require('./routes/consulta.route.js'));
