@@ -17,6 +17,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { AuthGuard } from './guards/auth.guard';
 import { roleGuard } from './guards/roleguards.guard';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { NovedadComponent } from './components/novedad/novedad.component';
+import { NovedadFormComponent } from './components/novedad-form/novedad-form.component';
 
 export const routes: Routes = [
   {
@@ -144,5 +146,9 @@ export const routes: Routes = [
   {
     path: 'contacto',
     component: ContactoComponent,
+  },
+  {
+    path: 'novedad',
+    component: NovedadFormComponent,
   },
 ];

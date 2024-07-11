@@ -20,6 +20,7 @@ app.use('/api/usuario', require('./routes/usuario.route'))
 app.use('/api/mercado-pago', require('./routes/mercadoPago.route.js'));
 app.use ('/api/promocion', require('./routes/promocion.route')); 
 app.use('/api/consulta', require('./routes/consulta.route.js'));
+app.use('/api/novedad', require('./routes/novedad.route.js'))
 //setting
 app.set('port', process.env.PORT || 3000);
 
