@@ -19,6 +19,7 @@ import { roleGuard } from './guards/roleguards.guard';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { NovedadComponent } from './components/novedad/novedad.component';
 import { NovedadFormComponent } from './components/novedad-form/novedad-form.component';
+import { PanelDeControlComponent } from './components/panel-de-control/panel-de-control.component';
 
 export const routes: Routes = [
   {
@@ -65,13 +66,8 @@ export const routes: Routes = [
     data: { roles: ['dueño'] },
   },
   { path: 'home', component: HomeComponent },
-  {
-    path: 'pagos-form/:estado',
-    component: PagosFormComponent,
-    canActivate: [AuthGuard],
-  },
-  { path: 'pagos', component: PagosComponent, canActivate: [AuthGuard] },
-
+  
+  
   { path: 'promocion', component: PromocionComponent },
   {
     path: 'promocion-form/:id',
@@ -125,6 +121,7 @@ export const routes: Routes = [
   },
   { path: 'registrar', component: SignupComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },
+
   {
     path: 'pagos-form/:estado',
     component: PagosFormComponent,
@@ -136,6 +133,18 @@ export const routes: Routes = [
     canActivate: [AuthGuard, roleGuard],
     data: { expectedRoles: ['administrativo', 'dueño'] },
   },
+
+  //{
+  //  path: 'pagos-form/:estado',
+  //  component: PagosFormComponent,
+  //  canActivate: [AuthGuard],
+  //},
+  //{ path: 'pagos', component: PagosComponent, canActivate: [AuthGuard] },
+  //{ path: 'pagos-form/:estado', component: PagosFormComponent },
+ // { path: 'pagos', component: PagosComponent },
+  { path: 'panel-control', component: PanelDeControlComponent },
+
+
 
   { path: 'promocion', component: PromocionComponent },
   {

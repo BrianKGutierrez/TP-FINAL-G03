@@ -38,6 +38,13 @@ export class PagoService {
       return this.http.post(this.apiPago+'/', body, httpOptions);
     }
   
-
+  getPagos(): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this.http.get(this.apiPago + '/', httpOptions);
+  }
   
 }
