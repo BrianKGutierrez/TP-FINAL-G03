@@ -63,16 +63,25 @@ export class AlquilerService {
     };
     return this._http.delete(this.hostBase + '/' + id, httpOptions);
   }
-  getLocalesByPropietario(id: string): Observable<any>{
+  getIDLocalesByPropietario(id: string): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
       }),
     };
     return this._http.get(
-      this.hostBase + '/getLocalByPropietario/' + id,
+      this.hostBase + '/getIDLocalesByPropietario/' + id,
       httpOptions
     );
-  
+  }
+  getLocalesByPropietario(id: string): Observable <any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+      }),
+    };
+    return this._http.get(
+      this.hostBase + '/getLocalesByPropietario/' + id,
+      httpOptions
+    );
   }
 
   getAlquilerbyIdPropietario(id: string): Observable<any> {

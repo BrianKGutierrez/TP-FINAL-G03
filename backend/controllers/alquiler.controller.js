@@ -21,7 +21,12 @@ alquilerCtrl.getLocalesByPropietario=async(req, res) => {
     const locales = alquileres.map(alquiler => alquiler.local._id);
     res.status(200).json(locales);
 }
-
+alquilerCtrl.getLocalesByPropietario=async(req, res)=>{
+    const id =req.params.id; 
+    const alquileres =await Alquiler.find ({propietario: id}).populate('local'); 
+    const locales=alquileres.map(alquiler=>alquiler.local); 
+    res.status(200).json(locales); 
+}
 
 // Crear un nuevo alquiler
 alquilerCtrl.createAlquiler = async (req, res) => {
