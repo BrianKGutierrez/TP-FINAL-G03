@@ -91,16 +91,5 @@ export class LocalesComponent {
     );
     this.ObtenerLocales();
   }
-  AlquilarLocal(id:string,estado:boolean){
-    this.localService.cambiarEstado(id,estado).subscribe(
-      (data: any) => {
-        this.ObtenerLocales()
-        alert("Alquilado")
-      },
-      error => {
-        console.log(error);
-      }
 
-    );
-  }
 }

@@ -63,5 +63,35 @@ cuotaCtrl.deleteCuota = async (req, res) => {
         })
     }
 }
+cuotaCtrl.crearCuota = async (req, res) => {
+    const { alquiler, mes, monto, nroCuota } = req.body;
+
+    try {
+        const nuevaCuota = new Cuota({
+            alquiler,
+            mes,
+            monto,
+            nroCuota,
+            adelantos: [],
+            estado: 'Pendiente' 
+        });
+
+        const cuotaGuardada = await nuevaCuota.save();
+        res.status(201).json(cuotaGuardada);
+    } catch (error) {
+        console.error('Error al crear cuota:', error);
+        res.status(500).json({ error: 'Hubo un error al crear la cuota' });
+    }
+};
+cuotaCtrl.getCuotasAlquiler = async (req, res) => {
+    const alquilerId = req.params.alquilerId;  
+    try {
+        const cuotas = await Cuota.find({ alquiler: alquilerId });   
+        res.json(cuotas);
+    } catch (error) {
+        console.error('Error al buscar cuotas:', error);
+        res.status(500).json({ message: 'Hubo un error al buscar cuotas' });
+    }
+}
 
 module.exports = cuotaCtrl;

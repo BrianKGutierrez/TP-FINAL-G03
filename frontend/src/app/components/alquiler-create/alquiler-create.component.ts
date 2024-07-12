@@ -8,6 +8,8 @@ import { PropietarioService } from '../../services/propietario.service';
 import { LocalService } from '../../services/local.service';
 import { Propietario } from '../../models/propietario';
 import { Local } from '../../models/local';
+import { CuotaService } from '../../services/cuota.service';
+import { Cuota } from '../../models/cuota';
 
 @Component({
   selector: 'app-alquiler-create',
@@ -24,16 +26,20 @@ export class AlquilerCreateComponent {
   constructor(
     private alquilerService: AlquilerService,
     private localService: LocalService,
-    private propietarioService: PropietarioService
-  ) { }
+    private propietarioService: PropietarioService,
+private cuotaService: CuotaService
+  ) { 
+    this.getLocales();
+
+  }
 
   ngOnInit(): void {
     this.getLocales();
     this.getPropietarios();
   }
-
+//Obtuve los locales Disponibles-Cambio 
   getLocales() {
-    this.localService.getLocales().subscribe(
+    this.localService.getLocalesbyAlquilado(false).subscribe(
       (result) => {
         this.locales = result;
       },
@@ -57,12 +63,56 @@ export class AlquilerCreateComponent {
   crearAlquiler() {
     this.alquilerService.createAlquiler(this.alquiler).subscribe(
       (result) => {
+        this.alquiler=result.newAlquiler;
+        this.AlquilarLocal(this.alquiler._id,true);
+        this.crearCuotas();
         console.log('Alquiler creado exitosamente:', result);
-        // Aquí puedes redirigir a la página de detalles del alquiler o hacer otra acción después de crearlo
+        this.getLocales();
+
       },
       (error) => {
         console.error('Error al crear alquiler:', error);
       }
     );
   }
+  crearCuotas() {
+    const montoCuota = this.alquiler.costoalquiler / this.alquiler.plazoMeses;
+    for (let i = 1; i <= this.alquiler.plazoMeses; i++) {
+      const cuota = new Cuota("Pendiente", montoCuota,  { _id: this.alquiler._id } as Alquiler, i, i);
+      this.cuotaService.createCuota(cuota).subscribe(
+        (result) => {
+          console.log('Cuota creada exitosamente:', result);
+        },
+        (error) => {
+          console.error('Error al crear cuota:', error);
+        }
+      );
+    }
+     this.ObtnerCuotasByID();
+  }
+  cuotas: Cuota[] = [];
+  ObtnerCuotasByID(){
+    this.cuotaService.getCuotasAlquiler(this.alquiler._id).subscribe(
+      (data:any) => {
+        this.cuotas = data;  
+      },
+      (error) => {
+        console.error('Error al obtener cuotas:', error);
+    
+      }
+    );}
+  
+  AlquilarLocal(id:string,estado:boolean){
+    this.localService.cambiarEstado(id,estado).subscribe(
+      (data: any) => {
+        alert("Local Alquilado")
+      },
+      error => {
+        console.log(error);
+      }
+
+    );
+  }
+
+
 }

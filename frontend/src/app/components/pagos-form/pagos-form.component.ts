@@ -4,6 +4,13 @@ import { Pago } from '../../models/pago';
 import { FormsModule, NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router ,ActivatedRoute} from '@angular/router';
+import { Alquiler } from '../../models/alquiler';
+import { AlquilerService } from '../../services/alquiler.service';
+import { LocalService } from '../../services/local.service';
+import { PropietarioService } from '../../services/propietario.service';
+import { Propietario } from '../../models/propietario';
+import { CuotaService } from '../../services/cuota.service';
+import { Cuota } from '../../models/cuota';
 
 @Component({
   selector: 'app-pagos-form',
@@ -19,11 +26,17 @@ export class PagosFormComponent {
   estado:string;
   items: any[];
   backUrls:{};
-  constructor(private pagoService: PagoService,private router: Router,private activateRoute: ActivatedRoute,@Inject(PLATFORM_ID) private platformId: Object) { 
+  Alquileres:Alquiler[] = [];
+  Propietarios:Propietario[] = [];
+  id_alquiler="";
+  id_prop="";
+  constructor(private pagoService: PagoService,private cuotaService: CuotaService,private router: Router,private alquilerService: AlquilerService,private  propietarioService:PropietarioService,
+    private activateRoute: ActivatedRoute,@Inject(PLATFORM_ID) private platformId: Object) { 
     this.pago = new Pago();
     this.items = [];
     this.backUrls={};
     this.estado = 'pendiente';
+    this.getPropietarios();
   }
   ngOnInit(): void {
 
@@ -74,9 +87,9 @@ export class PagosFormComponent {
     ];
   
     this.backUrls = {
-      success: 'http://localhost:4200/pagos-form/pagado',
+      success: 'https://localhost:4200/pagos-form/pagado',
       //failure: 'https://tu-sitio.com/pago-fallido',
-      pending: 'http://localhost:4200/pagos-form/pendiente',
+      pending: 'https://localhost:4200/pagos-form/pendiente',
       payer_email: 'test_user_1814832006@testuser.com',
     };
   
@@ -92,4 +105,49 @@ export class PagosFormComponent {
       }
     );
 }
+getAlquileres(){
+
+  if (this.id_prop) {
+    this.alquilerService.getAlquilerbyIdPropietario(this.id_prop).subscribe(
+      (data: any) => {
+        this.Alquileres = data;
+        console.log(this.Alquileres);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  } else {
+    this.Alquileres = [];
+  }
+
+
+}
+
+getPropietarios(){
+  this.propietarioService.getPropietarios().subscribe(
+    (data: any) => {
+      this.Propietarios = data;
+    console.log(this.Propietarios);
+    },
+    error => {
+      console.log(error);
+    }
+  );
+
+}
+
+
+cuotas: Cuota[] = [];
+ObtnerCuotasByID(){
+  this.cuotaService.getCuotasAlquiler(this.id_alquiler).subscribe(
+    (data:any) => {
+      this.cuotas = data;  
+    },
+    (error) => {
+      console.error('Error al obtener cuotas:', error);
+  
+    }
+  );}
+
 }

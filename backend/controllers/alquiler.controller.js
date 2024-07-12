@@ -30,7 +30,8 @@ alquilerCtrl.createAlquiler = async (req, res) => {
         await newAlquiler.save();
         res.status(200).json({
             'status': '1',
-            'msg': 'Alquiler guardado'
+            'msg': 'Alquiler guardado',
+            newAlquiler
         });
     } catch (error) {
         res.status(400).json({

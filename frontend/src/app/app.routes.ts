@@ -52,9 +52,9 @@ export const routes: Routes = [
   { path: 'registrar', component: SignupComponent ,  canActivate: [AuthGuard],canMatch: [roleGuard],
     data: { roles: [ 'dueño'] }},
   { path: 'home', component: HomeComponent },
-  { path: 'pagos-form/:estado', component: PagosFormComponent , canActivate: [AuthGuard],canMatch: [roleGuard],
-    data: { roles: [ 'dueño', 'administrativo','propietario'] }},
-  { path: 'pagos', component: PagosComponent,   canActivate: [AuthGuard]},
+  //{ path: 'pagos-form/:estado', component: PagosFormComponent , canActivate: [AuthGuard],canMatch: [roleGuard],
+   // data: { roles: [ 'dueño', 'administrativo','propietario'] }},
+  //{ path: 'pagos', component: PagosComponent,   canActivate: [AuthGuard]},
 
   { path: 'promocion', component: PromocionComponent },
   {

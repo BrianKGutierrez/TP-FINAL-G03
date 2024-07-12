@@ -3,10 +3,19 @@ import { Pago } from "./pago";
 
 export class Cuota {
     _id!: string;
-    alquiler!:Alquiler;
-    mes!:number;
-    monto!:number;
-    nroCuota!:number;
-    adelantos!:Array<Pago>;
-    estado!:boolean;
+  alquiler!: Alquiler;
+  mes!: number;
+  monto!: number;
+  nroCuota!: number;
+  adelantos!: Array<Pago>;
+  estado!: string;
+
+  constructor(estado: string, monto: number, alquiler: Alquiler, nroCuota: number, mes: number) {
+    this.estado = estado;
+    this.monto = monto;
+    this.alquiler = alquiler;
+    this.nroCuota = nroCuota;
+    this.mes = mes;
+    this.adelantos = [];
+  }
 }

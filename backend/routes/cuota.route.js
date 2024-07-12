@@ -3,8 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 //rutas
-router.get('/',cuotaCtrl.getCuotas);
 router.post('/', cuotaCtrl.crearCuota);
+router.get('/',cuotaCtrl.getCuotas);
+router.get('/Cuotalquileres/:alquilerId', cuotaCtrl.getCuotasAlquiler);
 router.get('/:id', cuotaCtrl.getCuota);
 router.put('/:id', cuotaCtrl.updateCuota);
 router.delete('/:id', cuotaCtrl.deleteCuota);
