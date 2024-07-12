@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ConsultaService } from '../../services/consulta.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'app-contacto-list',
@@ -20,14 +21,15 @@ export class ContactoListComponent {
   obteneCconsultas() {
     return this.consultaService.getConsultas().subscribe((data) => {
       this.consultas = data;
+      this.actualizarNotificacionesNoLeidas();
     });
   }
 
-  //Boton que cambia el estado de Novedad a resuelto
+  //Boton que cambia el estado de Novedad a resuelto y codigo de sweet
   actualizarContacto(consulta: any): void {
     Swal.fire({
       title: 'Estas seguro?',
-      text: 'Al aceptar aseguras que la consulta fue resuelta',
+      text: 'El mensaje fue leido?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -44,7 +46,7 @@ export class ContactoListComponent {
             this.obteneCconsultas(); //Para refrescar estado desde front y back
             Swal.fire({
               title: 'Listo!',
-              text: 'Se guardaron los cambios',
+              text: 'Gracias!',
               icon: 'success',
             });
           },
@@ -54,6 +56,12 @@ export class ContactoListComponent {
         );
       }
     });
+  }
+
+  actualizarNotificacionesNoLeidas() {
+    //Aumentar el numero sin refrescar pagina
+    const count = this.consultas.filter((c) => !c.estado).length;
+    this.consultaService.updateUnreadCount(count);
   }
 
   handleNotificationClick(event: Event) {

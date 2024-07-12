@@ -6,7 +6,7 @@ import { LoginService } from '../../services/login.service';
 import { NovedadComponent } from '../novedad/novedad.component';
 import { ContactoListComponent } from '../contacto-list/contacto-list.component';
 import { ConsultaService } from '../../services/consulta.service';
-import { Consulta } from '../../models/consulta';
+import { NovedadService } from '../../services/novedad.service';
 
 @Component({
   selector: 'app-header',
@@ -23,25 +23,27 @@ import { Consulta } from '../../models/consulta';
 })
 export class HeaderComponent implements OnInit {
   numeroMensajesNoLeidos: number = 0;
+  numeroNotificacionesNoLeidas: number = 0;
+
   constructor(
     public loginService: LoginService,
     private router: Router,
-    private consultaService: ConsultaService
+    private consultaService: ConsultaService,
+    private novedadService: NovedadService
   ) {}
 
   ngOnInit() {
-    this.contarConsultasNoLeidos();
+    // Suscribirse al observable para obtener actualizaciones en tiempo real de mensajes/contacto
+    this.consultaService.unreadCount$.subscribe((count) => {
+      this.numeroMensajesNoLeidos = count;
+    });
+    // Suscribirse al observable para obtener actualizaciones en tiempo real de notificaciones/novedades
+    this.novedadService.unreadCount$.subscribe((count) => {
+      this.numeroNotificacionesNoLeidas = count;
+    });
   }
   logout() {
     this.loginService.logout();
     this.router.navigate(['/login']);
-  }
-
-  contarConsultasNoLeidos() {
-    return this.consultaService.getConsultas().subscribe((res) => {
-      this.numeroMensajesNoLeidos = res.filter(
-        (consulta: Consulta) => !consulta.estado
-      ).length;
-    });
   }
 }
