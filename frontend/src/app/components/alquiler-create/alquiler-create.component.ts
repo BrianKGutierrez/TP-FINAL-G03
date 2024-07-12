@@ -10,6 +10,7 @@ import { Propietario } from '../../models/propietario';
 import { Local } from '../../models/local';
 import { CuotaService } from '../../services/cuota.service';
 import { Cuota } from '../../models/cuota';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-alquiler-create',
@@ -67,6 +68,10 @@ private cuotaService: CuotaService
         this.AlquilarLocal(this.alquiler._id,true);
         this.crearCuotas();
         console.log('Alquiler creado exitosamente:', result);
+        Swal.fire({
+          text: 'registro con exito',
+          icon: 'success'
+        })
         this.getLocales();
 
       },
@@ -82,6 +87,10 @@ private cuotaService: CuotaService
       this.cuotaService.createCuota(cuota).subscribe(
         (result) => {
           console.log('Cuota creada exitosamente:', result);
+          Swal.fire({
+            text: 'cuota creada con exito',
+            icon: 'success'
+          })
         },
         (error) => {
           console.error('Error al crear cuota:', error);

@@ -4,6 +4,7 @@ import { AlquilerService } from '../../services/alquiler.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-alquiler-list',
@@ -36,6 +37,10 @@ export class AlquilerListComponent {
     this.alquilerService.deleteAlquiler(id).subscribe(
       (data) => {
         console.log('Alquiler eliminado correctamente:', data);
+        Swal.fire({
+          text: 'eliminado con exito',
+          icon: 'success'
+        })
         this.obtenerAlquileres(); // Actualiza la lista después de eliminar
       },
       (error) => {
