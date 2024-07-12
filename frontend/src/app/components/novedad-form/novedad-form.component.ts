@@ -12,6 +12,8 @@ import { AlquilerService } from '../../services/alquiler.service';
 import { PropietarioService } from '../../services/propietario.service';
 import { Propietario } from '../../models/propietario';
 import { Alquiler } from '../../models/alquiler';
+import { NovedadComponent } from '../novedad/novedad.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-novedad-form',
@@ -49,12 +51,30 @@ export class NovedadFormComponent {
   }
 
   createNovedad() {
-    this.novedad.local = this.alquiler.local._id;
-    this.novedad.propietario = this.alquiler.propietario._id;
+    Swal.fire({
+      title: 'Estas Seguro?',
+      text: 'Corrobora que tus datos sean correctos',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.novedad.local = this.alquiler.local._id;
+        this.novedad.propietario = this.alquiler.propietario._id;
 
-    this.novedadService.createNovedad(this.novedad).subscribe((resp) => {
-      this.novedad = new Novedad();
-      console.log(resp);
+        this.novedadService.createNovedad(this.novedad).subscribe((resp) => {
+          this.novedad = new Novedad();
+          console.log(resp);
+        });
+
+        Swal.fire({
+          title: 'Novedad Enviada!',
+          text: 'Pronto lo resolveremos, gracias!',
+          icon: 'success',
+        });
+      }
     });
   }
 }

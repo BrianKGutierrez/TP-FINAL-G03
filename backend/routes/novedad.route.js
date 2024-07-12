@@ -4,6 +4,6 @@ const router = express.Router();
 
 router.get('/', novedadCtrl.getNovedades);
 router.post('/', novedadCtrl.createNovedad);
-router.put('/', novedadCtrl.editNovedad);
+router.put('/:id', novedadCtrl.editNovedad);
 
 module.exports = router;

@@ -11,7 +11,6 @@ export class Novedad {
   propietario: Propietario | string;
 
   constructor(
-    _id: string = '',
     fechaCreacion: Date | string = new Date(),
     fechaFinalizacion: Date | string = '',
     descripcion: string = '',
@@ -19,7 +18,6 @@ export class Novedad {
     local: Local | string = '',
     propietario: Propietario | string = ''
   ) {
-    this._id = _id;
     this.fechaCreacion = fechaCreacion;
     this.fechaFinalizacion = fechaFinalizacion;
     this.descripcion = descripcion;

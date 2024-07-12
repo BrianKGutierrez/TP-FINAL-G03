@@ -133,19 +133,52 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          *ngIf="['propietario'].includes(loginService.getUserRole() || '')"
+        >
           <a class="nav-link" [routerLink]="['novedad']">NOVEDAD</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['contacto']">CONTACTO</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['panel-control']">Panel de Control</a>
+          <a class="nav-link" [routerLink]="['panel-control']"
+            >Panel de Control</a
+          >
         </li>
       </ul>
 
       <div class="ml-auto">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li
+            class="nav-item dropdown"
+            *ngIf="
+              ['administrativo'].includes(loginService.getUserRole() || '')
+            "
+          >
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="notificationsDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fas fa-bell"></i>
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end consulta-dropdown"
+              aria-labelledby="notificationsDropdown"
+            >
+              <li>
+                <app-novedad></app-novedad>
+              </li>
+
+              <!-- More notifications here -->
+            </ul>
+          </li>
+
           <li class="nav-item">
             <a
               class="nav-link btn account-button"
