@@ -7,7 +7,7 @@ const app = express();
 
 // Middlewares
 //app.use(express.json());
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(cors({ origin: 'https://localhost:4200' }));
 app.use (bodyParser.json({limit:'10mb'}));
 app.use(bodyParser.urlencoded({limit:'10mb',extend:true}));
 //rutas

@@ -8,6 +8,7 @@ import { LoginService } from '../../services/login.service';
 import { PropietarioService } from '../../services/propietario.service';
 import { AlquilerService } from '../../services/alquiler.service';
 import { Propietario } from '../../models/propietario';
+import { ApiFacebookService } from '../../services/api-facebook.service';
 
 @Component({
   selector: 'app-promocion',
@@ -23,7 +24,8 @@ export class PromocionComponent {
     private router: Router,
     public loginService: LoginService,
     private propietarioService: PropietarioService,
-    private alquilerService: AlquilerService
+    private alquilerService: AlquilerService, 
+    private apiFacebookService: ApiFacebookService
   ) {
     this.verificarTipoDeUsuario();
 
@@ -96,6 +98,8 @@ export class PromocionComponent {
     )
   }
   promocionar(promocion: Promocion) {
+    this.apiFacebookService.postFb(promocion.descripcion); 
+
     promocion.publicado = true;
     this.promocionService.updatePromocion(promocion).subscribe(
       data => {
