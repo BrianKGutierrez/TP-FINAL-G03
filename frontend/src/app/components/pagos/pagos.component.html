@@ -11,14 +11,14 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Aquí se rellenarán los pagos dinámicamente -->
-        <tr>
-          <th scope="row">1</th>
-          <td>2024-07-01</td>
-          <td>$1000</td>
-          <td>Tarjeta de Crédito</td>
+        <!-- Aquí se rellenarán los pagos dinámicamente >
+        <tr *ngFor="let p of misPagos">
+          <th scope="row">{{p._id}}</th>
+          <td>{{ p.fechaDePago | date }}</td>
+          <td>{{p.monto}}</td>
+          <td>{{p.medioDePago}}</td>
           <td>Completado</td>
-        </tr>
+        </tr-->
       </tbody>
     </table>
 </div>

@@ -1,5 +1,5 @@
 <!-- VISTA PARA EL PROPIETARIO -->
-<div class="container justify-content-center">
+<div class="container justify-content-center" *ngIf="['propietario'].includes(loginService.getUserRole() || '')">
     <div class=" row m-5 d-flex">
         <div class="col md-9">
             <h2>Promociones</h2>
@@ -24,7 +24,7 @@
 </div>
 <!--VISTA PARA EL ADMINISTRADOR-->
 
-<div class="container">
+<div class="container" *ngIf="['administrativo', 'dueño'].includes(loginService.getUserRole() || '')">
     <h2>Fitrar</h2>
     <!-- <div class="form-check">
         <input class="form-check-input" type="radio" name="filtro" id="publicado" [(ngModel)]="filtro" value=true (click)="filtrar()">
@@ -47,7 +47,7 @@
         </select>
         <button class="btn btn-outline-secondary" type="button" (click)="filtrar()">Filtrar</button>
     </div>
-   
+
     <h2>Listado de Promociones</h2>
 
     <table class="table table-striped">

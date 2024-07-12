@@ -26,8 +26,8 @@
             ],
             "styles": [
               "src/styles.css",
-            "node_modules/bootstrap/dist/css/bootstrap.min.css",
-            "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
 
             ],
             "scripts": [
@@ -60,6 +60,13 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "ssl": true,
+            "sslKey": "src/assets/ssl/localhost.key",
+            "sslCert": "src/assets/ssl/localhost.crt",
+            "port": 4200,
+            "open": true
+          },
           "configurations": {
             "production": {
               "buildTarget": "frontend:build:production"

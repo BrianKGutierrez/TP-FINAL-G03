@@ -43,3 +43,17 @@ nav.navbar {
   background-color: #ff7f00; /* Color naranja al pasar el cursor */
   color: #fff;
 }
+
+.navbar .dropdown-menu {
+  width: 300px; /* Ajusta el ancho según sea necesario */
+}
+
+.navbar .dropdown-menu a {
+  white-space: normal; /* Permite que el texto se envuelva */
+}
+
+/* Estilos para el despliegue de notificaciones */
+.consulta-dropdown {
+  max-height: 33rem; /* Altura máxima del desplegable */
+  overflow-y: auto; /* Añade scroll vertical si es necesario */
+}

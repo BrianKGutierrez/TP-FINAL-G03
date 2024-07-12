@@ -12,6 +12,17 @@ export class PromocionService {
 
   constructor(private http: HttpClient) { }
 
+
+  getPromocionesByLocal(idLocal: string): Observable <any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+
+      }),
+      params: new HttpParams()
+        .append('local', idLocal)
+    }
+    return this.http.get (this.urlBase+'filtrar', httpOptions); 
+  }
   filtrarPromocionesByPublicado (filtro: string): Observable <any>{
     let httpOptions = {
       headers: new HttpHeaders({
