@@ -9,6 +9,6 @@ router.get('/:id',  alquilerCtrl.getAlquiler);
 router.put('/:id',  alquilerCtrl.editAlquiler);
 router.delete('/:id', alquilerCtrl.deleteAlquiler);
 router.get ('/filterpropietario/:id', alquilerCtrl.getAlquilerByIdPropietario); 
-router.get ('/getIDLocalesByPropietario/:idPropietario', alquilerCtrl.getIDLocalesByPropietario);
+//router.get ('/getIDLocalesByPropietario/:idPropietario', alquilerCtrl.getIDLocalesByPropietario);
 router.get ('/getLocalesByPropietario/:id', alquilerCtrl.getLocalesByPropietario); 
 module.exports = router;
