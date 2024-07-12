@@ -4,6 +4,6 @@ const router = express.Router();
 
 router.get('/', consultaCtrl.getConsultas);
 router.post('/', consultaCtrl.createConsulta);
-router.put('/', consultaCtrl.editConsulta);
+router.put('/:id', consultaCtrl.editConsulta);
 
 module.exports = router;

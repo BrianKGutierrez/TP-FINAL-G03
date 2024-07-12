@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { LocalService } from '../../services/local.service';
 import { PromocionService } from '../../services/promocion.service';
 import { CommonModule } from '@angular/common';
@@ -41,5 +41,20 @@ export class InicioComponent {
     this.promocionService.getPromociones().subscribe((data) => {
       this.promociones = data;
     });
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const button = document.querySelector('.scroll-to-top') as HTMLElement;
+    if (window.pageYOffset > 100) {
+      button.style.display = 'block';
+    } else {
+      button.style.display = 'none';
+    }
+  }
+
+  // Método para desplazarse suavemente hacia la parte superior
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

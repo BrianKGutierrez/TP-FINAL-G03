@@ -1,16 +1,22 @@
+body {
+  padding-top: 70px; /* Ajusta este valor según la altura de tu navbar */
+}
 nav.navbar {
   width: 100%;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Playfair Display", sans-serif;
 }
 
 /* styles.css o cualquier archivo CSS global */
 
 .navbar {
-  background-color: #f8f9fa; /* Color del fondo del navbar */
+  background-color: #94369563; /* Color del fondo del navbar */
 }
 
 .navbar-brand {
   font-weight: bold;
+  font-family: "Playfair Display";
+  font-size: 2rem;
+  color: #002147;
 }
 
 .nav-link {
@@ -22,7 +28,7 @@ nav.navbar {
 }
 
 .account-button {
-  background-color: #fff3cd; /* Color crema */
+  background-color: #ffffff; /* Color crema */
   border: 1px solid transparent;
   color: #333;
   margin-right: 10px;

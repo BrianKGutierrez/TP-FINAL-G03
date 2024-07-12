@@ -1,5 +1,5 @@
 <nav
-  class="navbar navbar-expand-lg navbar-light bg-body-tertiary"
+  class="navbar navbar-expand-lg navbar-light bg-body-tertiary fixed-top"
   style="width: 100%"
 >
   <div class="container-fluid">
@@ -25,7 +25,7 @@
             )
           "
         >
-          <a class="nav-link" [routerLink]="['propietario']">Propietario</a>
+          <a class="nav-link" [routerLink]="['propietario']">PROPIETARIO</a>
         </li>
         <li
           class="nav-item"
@@ -35,7 +35,7 @@
             )
           "
         >
-          <a class="nav-link" [routerLink]="['/locales', 'todos']">Local</a>
+          <a class="nav-link" [routerLink]="['/locales', 'todos']">LOCAL</a>
         </li>
         <li
           class="nav-item dropdown"
@@ -52,7 +52,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Registro de alquileres
+            ALQUILERES
           </a>
           <ul class="dropdown-menu">
             <li
@@ -85,7 +85,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Pagos
+            PAGOS
           </a>
           <ul class="dropdown-menu">
             <li
@@ -116,7 +116,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Promociones
+            PROMOCIONES
           </a>
           <ul class="dropdown-menu">
             <li>
@@ -144,13 +144,41 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['panel-control']"
-            >Panel de Control</a
+            >PANEL DE CONTROL</a
           >
         </li>
       </ul>
 
       <div class="ml-auto">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li
+            class="nav-item dropdown"
+            *ngIf="
+              ['administrativo'].includes(loginService.getUserRole() || '')
+            "
+          >
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="messagesDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fas fa-envelope"></i>
+              <span class="badge bg-danger">{{ numeroMensajesNoLeidos }}</span>
+              <!-- Badge con número de mensajes no leídos -->
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end consulta-dropdown"
+              aria-labelledby="messagesDropdown"
+            >
+              <li>
+                <app-contacto-list></app-contacto-list>
+                <!-- Componente para mostrar mensajes -->
+              </li>
+            </ul>
+          </li>
           <li
             class="nav-item dropdown"
             *ngIf="
@@ -185,7 +213,7 @@
               *ngIf="!loginService.userLoggedIn()"
               [routerLink]="['login']"
             >
-              <i class="fas fa-user"></i> Mi cuenta
+              <i class="fas fa-user"></i> Ingresar
             </a>
             <a
               class="nav-link btn btn-danger"

@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
-import { Novedad } from '../../models/novedad';
 import { NovedadService } from '../../services/novedad.service';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  Validators,
-} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 
