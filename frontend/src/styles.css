@@ -5,6 +5,36 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.btn-primary {
+  border-radius: 0 !important; /* Hace el botón rectangular */
+  background-color: #001f3f !important; /* Color marino */
+  border: none !important; /* Quita el borde del botón */
+  margin-top: 10px !important; /* Margen superior */
+}
+
+.btn-primary:focus,
+.btn-primary:hover {
+  background-color: #003366 !important; /* Cambio de color al hacer hover */
+}
+.btn-danger {
+  border-radius: 0 !important; /* Hace el botón rectangular */
+  border: none !important; /* Quita el borde del botón */
+
+  margin-right: 0.4rem;
+}
+.btn-warning {
+  border-radius: 0 !important; /* Hace el botón rectangular */
+  border: none !important; /* Quita el borde del botón */
+
+  margin-right: 0.4rem;
+}
+.btn-success {
+  border-radius: 0 !important; /* Hace el botón rectangular */
+  border: none !important; /* Quita el borde del botón */
+  margin-top: 10px !important; /* Margen superior */
+  margin-right: 0.4rem;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
