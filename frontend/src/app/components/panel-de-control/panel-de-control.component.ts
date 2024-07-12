@@ -24,6 +24,10 @@ export class PanelDeControlComponent implements OnInit{
 
   localesAlquilados!: Array<Local>;
   localesNoAlquilados!: Array<Local>;
+  localesHabilitados!: Array<Local>;
+  localesNoHabilitados!: Array<Local>;
+  todosLosLocales!: Array<Local>;
+
   pagosPorMes!: Array<Pago>;
   todosLosPagos!: Array<Pago>;
 
@@ -40,9 +44,11 @@ export class PanelDeControlComponent implements OnInit{
   showLabels: boolean = true;
   isDoughnut: boolean = false;
 
-  single: any[] = [];
+  localesAlquiladosChart: any[] = [];
   pagosChart: any[] = [];
   todosLosPagosChart: any[] = []; // Nuevo arreglo para la nueva gráfica de todos los pagos
+  localesHabilitadosChart: any[] = []; // Nuevo arreglo para la nueva gráfica de locales habilitdos
+  todosLosLocalesChart: any[] = []; // Nuevo arreglo para la todos los locales
 
   onSelect(data: any): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
@@ -68,7 +74,9 @@ export class PanelDeControlComponent implements OnInit{
         this.locales = data;
         console.log(this.locales);
         this.clasificarLocales();
-        this.actualizarDatosGrafico();
+        this.actualizarDatosGraficoLocalesAlquilados();
+        this.actualizarDatosGraficoLocalesHabilitados();
+        this.actualizarDatosGraficoTodosLosLocales();
       },
       error => {
         console.log('Error al obtener locales:',error);
@@ -106,25 +114,45 @@ export class PanelDeControlComponent implements OnInit{
   clasificarLocales(): void {
     this.localesAlquilados = this.locales.filter(local => local.alquilado);
     this.localesNoAlquilados = this.locales.filter(local => !local.alquilado);
+    this.localesHabilitados = this.locales.filter(local => local.habilitado);
+    this.localesNoHabilitados = this.locales.filter(local => !local.habilitado);
   }
 
   filtrarPagosPorMes(mes: string): void {
+    // Crear un mapa de meses para asegurar la correcta comparación
+    const mesesMap: { [key: string]: number } = {
+      Enero: 0,
+      Febrero: 1,
+      Marzo: 2,
+      Abril: 3,
+      Mayo: 4,
+      Junio: 5,
+      Julio: 6,
+      Agosto: 7,
+      Septiembre: 8,
+      Octubre: 9,
+      Noviembre: 10,
+      Diciembre: 11
+    };
+  
     // Filtrar los pagos por el mes seleccionado
     this.pagosPorMes = this.pagos.filter(pago => {
-      const mesPago = new Date(pago.fechaDePago).toLocaleString('es', { month: 'long' });
-      return mesPago === mes;
+      const fechaPago = new Date(pago.fechaDePago);
+      const mesPago = fechaPago.getMonth();
+      return mesPago === mesesMap[mes];
     });
   
     // Después de filtrar por mes, actualizamos los datos del gráfico de pagos
     this.actualizarDatosGraficoPago();
   }
   
+  
 
-  actualizarDatosGrafico(): void {
+  actualizarDatosGraficoLocalesAlquilados(): void {
     const totalAlquilados = this.localesAlquilados.length;
     const totalNoAlquilados = this.localesNoAlquilados.length;
 
-    this.single = [
+    this.localesAlquiladosChart = [
       {
         "name": "Alquilados",
         "value": totalAlquilados
@@ -135,6 +163,49 @@ export class PanelDeControlComponent implements OnInit{
       }
     ];
   }
+
+  actualizarDatosGraficoLocalesHabilitados(): void {
+    const totalHabilitados = this.localesHabilitados.length;
+    const totalNoHabilitados = this.localesNoHabilitados.length;
+
+    this.localesHabilitadosChart = [
+      {
+        "name": "Habilitados",
+        "value": totalHabilitados
+      },
+      {
+        "name": "No Habilitados",
+        "value": totalNoHabilitados
+      }
+    ];
+  }
+
+  actualizarDatosGraficoTodosLosLocales(): void {
+    const totalAlquilados = this.localesAlquilados.length;
+    const totalNoAlquilados = this.localesNoAlquilados.length;
+    const totalHabilitados = this.localesHabilitados.length;
+    const totalNoHabilitados = this.localesNoHabilitados.length;
+
+    this.todosLosLocalesChart = [
+      {
+        "name": "Alquilados",
+        "value": totalAlquilados 
+      },
+      {
+        "name": "No Alquilados",
+        "value": totalNoAlquilados
+      },
+      {
+        "name": "Habilitados",
+        "value": totalHabilitados
+      },
+      {
+        "name": "No Habilitados",
+        "value": totalNoHabilitados
+      }
+    ];
+  }
+
 
   actualizarDatosGraficoPago(): void {
     const pagosTotales = this.pagos.length;

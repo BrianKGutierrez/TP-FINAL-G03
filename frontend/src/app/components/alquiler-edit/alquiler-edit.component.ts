@@ -8,6 +8,7 @@ import { Propietario } from '../../models/propietario';
 import { Local } from '../../models/local';
 import { LocalService } from '../../services/local.service';
 import { PropietarioService } from '../../services/propietario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-alquiler-edit',
@@ -73,6 +74,10 @@ export class AlquilerEditComponent implements OnInit{
     this.alquilerService.updateAlquiler(this.alquiler).subscribe(
       (data) => {
         console.log('Alquiler actualizado correctamente:', data);
+        Swal.fire({
+          text: 'actualizacion con exito',
+          icon: 'success'
+        })
         this.router.navigate(['/alquileres']); // Redirige al listado después de actualizar
       },
       (error) => {

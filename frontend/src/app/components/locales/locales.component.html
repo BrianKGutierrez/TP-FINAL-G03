@@ -23,13 +23,26 @@
     <p class="card-text">Precio:{{local.precio}}</p><!--si esta alquilado y es cliente no se muestra-->
  </div>
   <button *ngIf="local.alquilado===false && local.habilitado===true" type="button" class="btn btn-danger d-flex justify-content-center text-center" style="margin-top: 10px;">Alquilar</button>
-  <button type="button" class="btn btn-warning d-flex justify-content-center text-center" (click)="EliminarLocal(local._id)" style="margin-top: 10px;">Eliminar</button>
- <button type="button" class="btn btn-primary d-flex justify-content-center text-center" (click)="ModificarLocal(local._id)" style="margin-top: 10px;">Modificar</button>
+  <button type="button" class="btn btn-warning d-flex justify-content-center text-center" *ngIf="
+  ['administrativo', 'dueño'].includes(
+    loginService.getUserRole() || ''
+  )
+"(click)="EliminarLocal(local._id)" style="margin-top: 10px;">Eliminar</button>
+ <button type="button" class="btn btn-primary d-flex justify-content-center text-center" *ngIf="
+ ['administrativo', 'dueño'].includes(
+   loginService.getUserRole() || ''
+ )
+"(click)="ModificarLocal(local._id)" style="margin-top: 10px;">Modificar</button>
+
+</div>
 
 </div>
 </div>
-</div>
-<button type="button" class="btn btn-primary"(click)="agregarLocal()" style="margin-left: 45%;">Agregar</button>
+<button type="button" class="btn btn-primary"*ngIf="
+['administrativo', 'dueño'].includes(
+  loginService.getUserRole() || ''
+)
+"(click)="agregarLocal()" style="margin-left: 45%;">Agregar</button>
 
 
 

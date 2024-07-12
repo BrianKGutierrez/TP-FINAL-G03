@@ -37,9 +37,9 @@ export class NovedadFormComponent {
   }
 
   validarAlquileres() {
-    let idUsaurio = sessionStorage.getItem('userid') ?? '';
+    let idUsaurio = sessionStorage.getItem('userid') ?? ''; //guardo el iduser de sseionStorage
     this.propietarioService
-      .getPropietarioByIdUsuario(idUsaurio)
+      .getPropietarioByIdUsuario(idUsaurio) //
       .subscribe((propietario: Propietario) => {
         let idPropietario = propietario._id;
         this.alquilerService
@@ -65,14 +65,13 @@ export class NovedadFormComponent {
         this.novedad.propietario = this.alquiler.propietario._id;
 
         this.novedadService.createNovedad(this.novedad).subscribe((resp) => {
-          this.novedad = new Novedad();
+          Swal.fire({
+            title: 'Novedad Enviada!',
+            text: 'Pronto lo resolveremos, gracias!',
+            icon: 'success',
+          });
           console.log(resp);
-        });
-
-        Swal.fire({
-          title: 'Novedad Enviada!',
-          text: 'Pronto lo resolveremos, gracias!',
-          icon: 'success',
+          this.novedad = new Novedad();
         });
       }
     });

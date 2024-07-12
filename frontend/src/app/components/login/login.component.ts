@@ -4,6 +4,7 @@ import { LoginService } from '../../services/login.service';
 import { Usuario } from '../../models/usuario';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -41,9 +42,17 @@ export class LoginComponent {
     sessionStorage.setItem("perfil", user.activo);
     //redirigimos a home o a pagina que llamo
     this.router.navigateByUrl(this.returnUrl);
+    Swal.fire({
+      text: 'registrado con exito',
+      icon: 'success'
+    })
+    
   } else {
   //usuario no encontrado muestro mensaje en la vista
-  this.msglogin="Credenciales incorrectas..";
+  Swal.fire({
+    text: 'registro incorrecto',
+    icon: 'success'
+  })
   }
   },
   error => {

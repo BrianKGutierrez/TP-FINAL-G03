@@ -4,6 +4,7 @@ import { Usuario } from '../../models/usuario';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -53,6 +54,10 @@ export class SignupComponent implements OnInit {
     this.usuarioService.createUsuario(newUser).subscribe(
       (data) => {
         console.log('Usuario creado correctamente:', data);
+        Swal.fire({
+          text: 'registrado con exito',
+          icon: 'success'
+        })
         this.resetForm();
         this.getUsuarios();
       },
@@ -69,6 +74,10 @@ export class SignupComponent implements OnInit {
       this.usuarioService.editUsuario(this.selectedUsuario._id, editedUser).subscribe(
         (data) => {
           console.log('Usuario actualizado correctamente:', data);
+          Swal.fire({
+            text: 'registrado con exito',
+            icon: 'success'
+          })
           this.resetForm();
           this.getUsuarios();
         },
@@ -83,6 +92,10 @@ export class SignupComponent implements OnInit {
     this.usuarioService.deleteUsuario(id).subscribe(
       (data) => {
         console.log('Usuario eliminado correctamente:', data);
+        Swal.fire({
+          text: 'eliminado con exito',
+          icon: 'success'
+        })
         this.getUsuarios();
       },
       (error) => {

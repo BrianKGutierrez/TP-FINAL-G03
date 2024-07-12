@@ -2,15 +2,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Consulta } from '../models/consulta';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConsultaService {
   hostBase: string;
+  private unreadCount = new BehaviorSubject<number>(0); //actualiuzar notificaciones
   constructor(private _http: HttpClient) {
     this.hostBase = 'http://localhost:3000/api/consulta';
   }
+
+  // Observable que los componentes pueden suscribirse para obtener actualizaciones en tiempo real
+  unreadCount$ = this.unreadCount.asObservable();
 
   createConsulta(consulta: Consulta): Observable<any> {
     let httpOptions = {
@@ -43,5 +48,9 @@ export class ConsultaService {
       body,
       httpOptions
     );
+  }
+
+  updateUnreadCount(count: number) {
+    this.unreadCount.next(count);
   }
 }

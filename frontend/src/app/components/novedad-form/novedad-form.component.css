@@ -1,3 +1,8 @@
+.form-select-dm {
+  height: 35px; /* Ejemplo de clase para un tamaño aún más pequeño */
+  font-size: 12px; /* Ejemplo de tamaño de fuente más pequeño */
+}
+
 .container {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -10,6 +15,7 @@
 }
 
 .textarea-novedad {
+  margin-top: 20px;
   width: 50%; /* Ocupa la mitad del ancho */
   border-radius: 0; /* Rectangular */
   background-color: #f0f0f0; /* Color gris claro */
