@@ -15,16 +15,16 @@ export class ApiFacebookService {
   ngOnInit(): void {
 
   }
-  postFb(message: string) {
+  postFb(message1: string, message2: string) {
     var apiMethod: ApiMethod = "post";
     this.fb.api(
       //ID DE LA PAGINA DE FACEBOOK
       '/346995121835378/feed',
       apiMethod,
       {
-        "message": message,
+      "message": message1+ '\n' +message2, 
         //Token generado en APIGRAPH
-        "access_token": "EAARJ1RoFwVgBO6WXbZC4fLTkqB72OwRNpbhZAAIMV076smzFj3joZCPtU3UjFPLagPBM5YMQOrAHzePMFL3zdbIiN8zjIBhEG7eFBaXPZCxCRp9IFKZCyjZCHW0ZBXvXXLkAt0ySrwjEnCOQOXQMSla4iJ2AJlDW2AkpzO8grKcp46oWB7BDTXrt8A99IxL2REyNGizeZAGG26nbDiLBvSRWA9D2"
+        "access_token": "EAARJ1RoFwVgBOZBS2AnlwrrJJZAh1GZAfbtCb2zTTsAZBnSldfY4kdiZCIHlaZBuYIwY2LHjrFG3RkJItVDWyxq8LOtl0TN1QgtYZCYv944jMjqw3yufZAULNbffBl6fZBKtRco6I4ZAvLScKX6tYZCJZCq9kfZCQXCmGcMz4dGhWuoOEXsAw0HTxGfhX0ihQWbmQxwBEilNb0LAvjvN5kEsOSGWHbWbj"
       },
     ).then(response => {
       console.log('LA PUBLICACION SE HA REALIZADO CON EXITO', response);

@@ -1,22 +1,24 @@
 import { Component } from '@angular/core';
-import { Router ,ActivatedRoute} from '@angular/router';
+import { Router ,ActivatedRoute, RouterModule} from '@angular/router';
 import { LocalService } from '../../services/local.service';
 import { Local } from '../../models/local';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LoginService } from '../../services/login.service';
 @Component({
   selector: 'app-locales',
   standalone: true,
-  imports: [NgFor, NgIf, CommonModule, FormsModule],
+  imports: [NgFor, NgIf, CommonModule, FormsModule, RouterModule],
   templateUrl: './locales.component.html',
   styleUrl: './locales.component.css'
 })
 export class LocalesComponent {
   locales: Array<Local>;
   filtro: string = "";
-  constructor(private localService: LocalService, private router: Router,private activateRoute: ActivatedRoute) {
+  constructor(private localService: LocalService, private router: Router,private activateRoute: ActivatedRoute,public loginService:LoginService) {
     this.locales = [];
     this.ObtenerLocales();
+    
   }
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params=>{
@@ -91,16 +93,5 @@ export class LocalesComponent {
     );
     this.ObtenerLocales();
   }
-  AlquilarLocal(id:string,estado:boolean){
-    this.localService.cambiarEstado(id,estado).subscribe(
-      (data: any) => {
-        this.ObtenerLocales()
-        alert("Alquilado")
-      },
-      error => {
-        console.log(error);
-      }
 
-    );
-  }
 }

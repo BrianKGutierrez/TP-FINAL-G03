@@ -59,6 +59,14 @@ export class CuotaService {
     };
     return this._http.delete(this.hostBase + '/' + id, httpOptions);
   }
+  getCuotasAlquiler(id:string):Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this._http.get(this.hostBase+/Cuotalquileres/+id, httpOptions);
+  }
 
-  
+
 }

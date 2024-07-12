@@ -1,14 +1,26 @@
 <div class="container">
-  <form>
+  <form #myForm="ngForm" (ngSubmit)="createNovedad()">
     <h2 class="titulo-novedades">NOVEDADES</h2>
     <div class="form-group">
       <label for="usuario" class="form-label">Local Alquilado:</label>
-      <select class="form-select" name="alquiler" [(ngModel)]="alquiler">
-        <option>Seleccion su local</option>
+      <select
+        class="form-select"
+        name="alquiler"
+        [(ngModel)]="alquiler"
+        required
+        #alquilerCtrl="ngModel"
+      >
+        <option value="" disabled>Selecciona tu local</option>
         <option *ngFor="let alquiler of alquileres" [ngValue]="alquiler">
           {{ alquiler.local.titulo }}
         </option>
       </select>
+      <div
+        *ngIf="alquilerCtrl.touched && alquilerCtrl.invalid"
+        class="text-danger"
+      >
+        Datos obligatorios
+      </div>
     </div>
     <div class="form-group">
       <textarea
@@ -16,14 +28,16 @@
         name="descripcion"
         [(ngModel)]="novedad.descripcion"
         placeholder="Ingrese novedad"
+        required
+        #descripcionCtrl="ngModel"
       ></textarea>
+      <div
+        *ngIf="descripcionCtrl.touched && descripcionCtrl.invalid"
+        class="text-danger"
+      >
+        Datos obligatorios
+      </div>
     </div>
-    <button
-      type="submit"
-      class="btn btn-primary btn-enviar"
-      (click)="createNovedad()"
-    >
-      Enviar
-    </button>
+    <button type="submit" class="btn btn-primary btn-enviar">Enviar</button>
   </form>
 </div>

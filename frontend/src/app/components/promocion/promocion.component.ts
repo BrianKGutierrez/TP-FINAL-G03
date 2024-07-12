@@ -9,6 +9,7 @@ import { PropietarioService } from '../../services/propietario.service';
 import { AlquilerService } from '../../services/alquiler.service';
 import { Propietario } from '../../models/propietario';
 import { ApiFacebookService } from '../../services/api-facebook.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-promocion',
@@ -24,13 +25,27 @@ export class PromocionComponent {
     private router: Router,
     public loginService: LoginService,
     private propietarioService: PropietarioService,
-    private alquilerService: AlquilerService, 
+    private alquilerService: AlquilerService,
     private apiFacebookService: ApiFacebookService
   ) {
     this.verificarTipoDeUsuario();
 
   }
-
+  verPromocion(id: string) {
+    Swal.fire({
+      text: '¿Desea ver esta Promocion?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['promocion-form', id]);
+      }
+    }
+    )
+  }
   //VERIFICO TIPO DE USUARIO PARA DECIDIR QUE PROMOCIONES CARGAR 
   verificarTipoDeUsuario() {
     const rolUser: string = this.loginService.getUserRole();
@@ -56,7 +71,7 @@ export class PromocionComponent {
     this.propietarioService.getPropietarioByIdUsuario(idUsaurio).subscribe
       ((propietario: Propietario) => {
         let idPropietario = propietario._id;
-        this.alquilerService.getLocalesByPropietario(idPropietario).subscribe(
+        this.alquilerService.getIDLocalesByPropietario(idPropietario).subscribe(
           data => {
             const locales: Array<string> = [];
             data.forEach((local: any) => {
@@ -98,40 +113,92 @@ export class PromocionComponent {
     )
   }
   promocionar(promocion: Promocion) {
-    this.apiFacebookService.postFb(promocion.descripcion); 
+    Swal.fire({
+      text: '¿Desea publicar esta promocion en Facebook?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiFacebookService.postFb(promocion.titulo, promocion.descripcion);
+        //Mostrar mjs desde el servidor 
+        promocion.publicado = true;
+        this.promocionService.updatePromocion(promocion).subscribe(
+          data => {
+            if (data.status == 1) {
+              Swal.fire({
+                text: 'La promocion ha sido publicada con exito',
+                icon: 'success'
+              })
+            }
+          }
+        )
 
-    promocion.publicado = true;
-    this.promocionService.updatePromocion(promocion).subscribe(
-      data => {
-        if (data.status == 1) {
-          alert("La promocion se ha publicado correctamente ");
-        }
       }
+    }
+    )
+
+  }
+
+  modificar(id: string) {
+    Swal.fire({
+      //title: 'Esta seguro que desea modificar esta Promocion?',
+      text: '¿Esta seguro que desea modificar esta Promocion?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['promocion-form', id]);
+      }
+    }
     )
   }
-  
-  modificar(id: string) {
-    this.router.navigate(['promocion-form', id]);
-  }
+  //
 
   eliminar(id: string) {
-    this.promocionService.removePromocion(id).subscribe(
-      result => {
-        if (result.status == 1) {
-          alert("El Ticket se ha eliminado correctamente");
-          let indexToRemove = this.promociones.findIndex(promocion => promocion._id === id);
-          if (indexToRemove !== -1) {
-            this.promociones.splice(indexToRemove, 1);
-          }
-          this.router.navigate(['promocion']);
-        }
-      },
-      error => {
-        alert("Ha ocurrido un error");
-        console.log(error);
-      }
-    )
+    Swal.fire({
+      text: '¿Esta seguro que desea eliminar  esta Promocion?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.promocionService.removePromocion(id).subscribe(
+          result => {
+            if (result.status == 1) {
+              let indexToRemove = this.promociones.findIndex(promocion => promocion._id === id);
+              if (indexToRemove !== -1) {
+                this.promociones.splice(indexToRemove, 1);
+              }
+              Swal.fire({
+                text: 'La promocion ha sido eliminada con exito',
+                icon: 'success'
+              }).then((result) => {
+                this.router.navigate(['promocion']);
+              }
+              )
 
+            }
+          },
+          error => {
+            Swal.fire({
+              text: 'Ha ocurrido un error',
+              icon: 'error'
+            }
+            )
+          }
+        )
+
+      }
+    }
+    )
   }
 
 }

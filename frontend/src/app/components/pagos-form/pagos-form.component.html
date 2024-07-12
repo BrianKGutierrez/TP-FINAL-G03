@@ -1,3 +1,50 @@
+<div class="d-flex justify-content-center mb-3">
+<div class="input-group mb-3 justify-content-center" style="width: 700px;">
+  <span class="input-group-text" id="basic-addon1" style="background-color: rgb(255, 187, 0);">Seleccionar Propietario</span>
+  <select class="form-select" id="propietario" name="propietario" [(ngModel)]="id_prop" (change)="getAlquileres()" required>
+    <option *ngFor="let prop of Propietarios" [ngValue]="prop._id">{{ prop.dni }}</option>
+  </select>
+</div>
+</div>
+<div class="d-flex justify-content-center mb-3">
+<div class="input-group mb-3 justify-content-center" style="width: 700px;">
+  <span class="input-group-text" id="basic-addon1" style="background-color: rgb(255, 187, 0);">Seleccionar Alquiler</span>
+  <select class="d-flex justify-content-center mb-3"lect class="form-select" id="local" name="local" [(ngModel)]="id_alquiler"(change)="ObtnerCuotasByID()"  required>
+    <option *ngFor="let alquiler of Alquileres" [ngValue]="alquiler._id">{{ alquiler.local.titulo }}</option>
+  </select>
+</div>
+</div>
+
+
+
+<div class="container">
+  <h2>Lista de Cuotas</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Alquiler</th>
+        <th>Mes</th>
+        <th>Monto</th>
+        <th>Número de Cuota</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody (change)="ObtnerCuotasByID()">
+      <tr *ngFor="let cuota of cuotas">
+        <td>{{ cuota._id }}</td>
+        <td>{{ cuota.alquiler }}</td>
+        <td>{{ cuota.mes }}</td>
+        <td>{{ cuota.monto }}</td>
+        <td>{{ cuota.nroCuota }}</td>
+        <td>{{ cuota.estado }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
 <div class="container mt-5">
   <h2 class="mb-4">Realizar Pago</h2>
   <form id="paymentForm">
@@ -18,7 +65,6 @@
       <label for="medioPago" class="form-label">Medio de Pago</label>
       <select class="form-select" id="medioPago" required [(ngModel)]="pago.medioDePago" name="medioPago">
         <option value="" disabled selected>Seleccione el medio de pago</option>
-        <!-- Aquí se rellenarán los medios de pago dinámicamente -->
         <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
         <option value="Transferencia Bancaria">Transferencia Bancaria</option>
         <option value="Mercado Pago">Mercado Pago</option>

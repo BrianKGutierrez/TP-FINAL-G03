@@ -37,3 +37,29 @@
     </form>
   </div>
 </div>
+ 
+<div class="container">
+  <h2>Lista de Cuotas</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Alquiler</th>
+        <th>Mes</th>
+        <th>Monto</th>
+        <th>Número de Cuota</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cuota of cuotas">
+        <td>{{ cuota._id }}</td>
+        <td>{{ cuota.alquiler }}</td>
+        <td>{{ cuota.mes }}</td>
+        <td>{{ cuota.monto }}</td>
+        <td>{{ cuota.nroCuota }}</td>
+        <td>{{ cuota.estado }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

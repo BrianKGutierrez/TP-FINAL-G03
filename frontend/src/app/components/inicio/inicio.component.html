@@ -150,10 +150,18 @@
         <div class="card-body">
           <h5 class="card-title">{{ p.titulo }}</h5>
           <p class="card-text">{{ p.descripcion }}</p>
-          <p class="card-text">{{ p.fechaInicio | date: 'dd/MM/yyyy' }}</p>
-          <p class="card-text">{{ p.fechaFin | date: 'dd/MM/yyyy'}}</p>
+          <p class="card-text">
+            Valida desde
+            {{ p.fechaInicio | date : "dd/MM/yyyy" }} hasta
+            {{ p.fechaFin | date : "dd/MM/yyyy" }}
+          </p>
         </div>
       </div>
     </div>
   </div>
+</div>
+<div class="scroll-to-top" style="display: none">
+  <button class="scroll-top-button" (click)="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 </div>

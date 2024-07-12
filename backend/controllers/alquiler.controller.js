@@ -15,13 +15,18 @@ alquilerCtrl.getAlquileres = async (req, res) => {
     }
 };
 //Obtener locales by id de propietario- SOLO DEVUELVE LOS ID DE LOCALES
-alquilerCtrl.getLocalesByPropietario=async(req, res) => {
+alquilerCtrl.getIDLocalesByPropietario=async(req, res) => {
     const idPropietario = req.params.idPropietario; 
     const alquileres = await Alquiler.find({ propietario: idPropietario }).populate('local');
     const locales = alquileres.map(alquiler => alquiler.local._id);
     res.status(200).json(locales);
 }
-
+alquilerCtrl.getLocalesByPropietario=async(req, res)=>{
+    const id =req.params.id; 
+    const alquileres =await Alquiler.find ({propietario: id}).populate('local'); 
+    const locales=alquileres.map(alquiler=>alquiler.local); 
+    res.status(200).json(locales); 
+}
 
 // Crear un nuevo alquiler
 alquilerCtrl.createAlquiler = async (req, res) => {
@@ -30,7 +35,8 @@ alquilerCtrl.createAlquiler = async (req, res) => {
         await newAlquiler.save();
         res.status(200).json({
             'status': '1',
-            'msg': 'Alquiler guardado'
+            'msg': 'Alquiler guardado',
+            newAlquiler
         });
     } catch (error) {
         res.status(400).json({

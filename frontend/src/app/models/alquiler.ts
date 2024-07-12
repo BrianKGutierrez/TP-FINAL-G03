@@ -13,7 +13,7 @@ export class Alquiler {
       this.plazoMeses = 0;
       this.costoalquiler = 0;
       this.fecha = new Date();
-      this.local = new Local(); // Asegúrate de que Local tenga un constructor sin parámetros si lo inicializas así
-      this.propietario = new Propietario(); // Asegúrate de que Propietario tenga un constructor sin parámetros si lo inicializas así
+      this.local = new Local(); 
+      this.propietario = new Propietario(); 
   }
 }

@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
-import { Novedad } from '../../models/novedad';
 import { NovedadService } from '../../services/novedad.service';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  Validators,
-} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 
@@ -28,6 +21,7 @@ export class NovedadComponent {
     this.novedadService.getNovedades().subscribe(
       (data) => {
         this.novedades = data;
+        this.actualizarNotificacionesNoLeidas();
       },
       (error) => {
         console.error('Error al obtener Novedades:', error);
@@ -69,6 +63,11 @@ export class NovedadComponent {
         );
       }
     });
+  }
+
+  actualizarNotificacionesNoLeidas() {
+    const count = this.novedades.filter((c) => !c.estado).length;
+    this.novedadService.updateUnreadCount(count);
   }
 
   handleNotificationClick(event: Event) {
