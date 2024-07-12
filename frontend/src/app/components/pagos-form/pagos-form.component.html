@@ -15,15 +15,27 @@
 </div>
 </div>
 
+<div *ngIf="cuotas.length > 0" class="input-group mb-3 justify-content-center" style="width: 700px;">
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1" style="background-color: rgb(255, 187, 0);">Monto Cuota</span>
+    <label for="cuotamonto" class="form-label">{{ montoCuota }}</label>
+  </div>
+</div>
+
+<div *ngIf="cuotas.length > 0" class="input-group mb-3 justify-content-center" style="width: 700px;">
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1" style="background-color: rgb(255, 187, 0);">Monto Pagado</span>
+    <label for="cuotamonto" class="form-label">{{ montoPagado }}</label>
+  </div>
+</div>
+
 
 
 <div class="container">
-  <h2>Lista de Cuotas</h2>
+  <h2>Cuota</h2>
   <table class="table">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Alquiler</th>
         <th>Mes</th>
         <th>Monto</th>
         <th>Número de Cuota</th>
@@ -32,8 +44,6 @@
     </thead>
     <tbody (change)="ObtnerCuotasByID()">
       <tr *ngFor="let cuota of cuotas">
-        <td>{{ cuota._id }}</td>
-        <td>{{ cuota.alquiler }}</td>
         <td>{{ cuota.mes }}</td>
         <td>{{ cuota.monto }}</td>
         <td>{{ cuota.nroCuota }}</td>
@@ -49,15 +59,6 @@
   <h2 class="mb-4">Realizar Pago</h2>
   <form id="paymentForm">
     <div class="mb-3">
-      <label for="local" class="form-label">Local</label>
-      <select class="form-select" id="local" required>
-        <option value="" disabled selected>Seleccione el local</option>
-        <!-- Aquí se rellenarán los locales dinámicamente -->
-        <option value="1">Local 1</option>
-        <option value="2">Local 2</option>
-      </select>
-    </div>
-    <div class="mb-3">
       <label for="monto" class="form-label">Monto</label>
       <input type="number" class="form-control" name="monto" [(ngModel)]="pago.monto" id="monto"  placeholder="Ingrese el monto" required>
     </div>
@@ -72,6 +73,12 @@
     </div>
      
       <button type="submit" class="btn btn-primary" (click)="generarPago()">Realizar Pago</button>
-      <button type="submit" class="btn btn-primary">Cancelar Pago</button><!--Se debe volver a la otra pagina-->
+      <button type="submit" class="btn btn-primary">Cancelar Pago</button>
     </form>
 </div>
+<h4>Pagos:</h4>
+  <ul *ngIf="cuotActual.adelantos.length>0">
+    <li *ngFor="let pago of cuotActual.adelantos">
+      Monto: {{ pago.monto }}, Fecha: {{ pago.fechaDePago }}, Medio: {{ pago.medioDePago }}
+    </li>
+  </ul>

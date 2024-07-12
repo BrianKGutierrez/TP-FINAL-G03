@@ -67,6 +67,13 @@ export class CuotaService {
     };
     return this._http.get(this.hostBase+/Cuotalquileres/+id, httpOptions);
   }
-
+  getPrimerCuota(id:string):Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this._http.get(this.hostBase+/primera/+id, httpOptions);
+  }
 
 }
