@@ -21,7 +21,7 @@ export class NovedadComponent {
     this.novedadService.getNovedades().subscribe(
       (data) => {
         this.novedades = data;
-        this.actualizarNotificacionesNoLeidas();
+        this.actualizarNotificacionesNoLeidas(); //conteo
       },
       (error) => {
         console.error('Error al obtener Novedades:', error);
