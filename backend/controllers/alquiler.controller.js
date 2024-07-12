@@ -15,7 +15,7 @@ alquilerCtrl.getAlquileres = async (req, res) => {
     }
 };
 //Obtener locales by id de propietario- SOLO DEVUELVE LOS ID DE LOCALES
-alquilerCtrl.getLocalesByPropietario=async(req, res) => {
+alquilerCtrl.getIDLocalesByPropietario=async(req, res) => {
     const idPropietario = req.params.idPropietario; 
     const alquileres = await Alquiler.find({ propietario: idPropietario }).populate('local');
     const locales = alquileres.map(alquiler => alquiler.local._id);
