@@ -54,8 +54,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'pagos-form/:estado', component: PagosFormComponent , canActivate: [AuthGuard],canMatch: [roleGuard],
     data: { roles: [ 'dueño', 'administrativo','propietario'] }},
-  { path: 'pagos', component: PagosComponent,   canActivate: [AuthGuard],canMatch: [roleGuard],
-    data: { roles: [ 'dueño', 'administrativo','propietario'] }},
+  { path: 'pagos', component: PagosComponent,   canActivate: [AuthGuard]},
 
   { path: 'promocion', component: PromocionComponent },
   {
